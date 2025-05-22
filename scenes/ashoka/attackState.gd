@@ -6,11 +6,17 @@ extends State
 @onready var timer: Timer = $Timer
 @export var attack_2_node : String = "attack2"
 @onready var sword: Area2D = $"../../sword"
-
+@onready var slash: AudioStreamPlayer = get_node("../../sfx_attack")
 
 func state_input(event: InputEvent):
 
 	if(event.is_action_pressed("attack_mobile")):
+		if slash:
+			slash.pitch_scale = randf_range(0.9, 1.1)
+			print("slashing double")
+			slash.play()
+		else:
+			print("⚠️ slash is null – check AudioStreamPlayer path")
 		timer.start()
 		
 	

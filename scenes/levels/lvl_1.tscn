@@ -1955,34 +1955,35 @@ position = Vector2(1973, 508)
 [node name="ahsoka" parent="." instance=ExtResource("6_144l7")]
 position = Vector2(212, 584)
 
+[node name="CollisionShape2D" parent="ahsoka" index="0"]
+position = Vector2(25, -14)
+
+[node name="Camera2D" parent="ahsoka" index="1"]
+position = Vector2(41, -19)
+zoom = Vector2(3.5, 3.5)
+limit_smoothed = true
+position_smoothing_enabled = false
+
+[node name="Sprite2D" parent="ahsoka" index="2"]
+position = Vector2(26, -14)
+
+[node name="stateDebug" parent="ahsoka" index="6"]
+visible = false
+metadata/_edit_use_anchors_ = true
+
+[node name="sword" parent="ahsoka" index="7"]
+position = Vector2(28, -8)
+
+[node name="dmgZone" parent="ahsoka/sword" index="0"]
+position = Vector2(15, -7)
+
 [node name="sfx_attack" type="AudioStreamPlayer" parent="ahsoka"]
 stream = ExtResource("14_xejq1")
 volume_db = 10.0
 
 [node name="sfx_jump" type="AudioStreamPlayer" parent="ahsoka"]
 stream = ExtResource("11_ymopi")
-volume_db = 10.0
-
-[node name="CollisionShape2D" parent="ahsoka" index="2"]
-position = Vector2(25, -14)
-
-[node name="Camera2D" parent="ahsoka" index="3"]
-position = Vector2(41, -19)
-zoom = Vector2(3.5, 3.5)
-limit_smoothed = true
-position_smoothing_enabled = false
-
-[node name="Sprite2D" parent="ahsoka" index="4"]
-position = Vector2(26, -14)
-
-[node name="stateDebug" parent="ahsoka" index="8"]
-metadata/_edit_use_anchors_ = true
-
-[node name="sword" parent="ahsoka" index="9"]
-position = Vector2(28, -8)
-
-[node name="dmgZone" parent="ahsoka/sword" index="0"]
-position = Vector2(15, -7)
+volume_db = 5.0
 
 [node name="CanvasLayer" type="CanvasLayer" parent="ahsoka"]
 
