@@ -1,0 +1,79 @@
+[gd_scene load_steps=11 format=3 uid="uid://042iqgdh05v"]
+
+[ext_resource type="Texture2D" uid="uid://ct7l8h0nqs5oo" path="res://assets/Coin_Gems/MonedaD.png" id="1_501vx"]
+[ext_resource type="Script" uid="uid://de4s7obgmnh2" path="res://scenes/ui/coin.gd" id="1_q3pqi"]
+[ext_resource type="AudioStream" uid="uid://boapycbeggqi3" path="res://assets/coin-upaif-14631.mp3" id="3_fokmu"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ua8o6"]
+radius = 11.0
+height = 26.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_q3pqi"]
+atlas = ExtResource("1_501vx")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fokmu"]
+atlas = ExtResource("1_501vx")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2nh0s"]
+atlas = ExtResource("1_501vx")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_87o85"]
+atlas = ExtResource("1_501vx")
+region = Rect2(48, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6hf7y"]
+atlas = ExtResource("1_501vx")
+region = Rect2(64, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_rov02"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_q3pqi")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fokmu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2nh0s")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_87o85")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6hf7y")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 9.0
+}, {
+"frames": [],
+"loop": true,
+"name": &"new_animation",
+"speed": 5.0
+}]
+
+[node name="coin" type="Area2D"]
+script = ExtResource("1_q3pqi")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(5, -2)
+shape = SubResource("CapsuleShape2D_ua8o6")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+texture_filter = 1
+position = Vector2(4.5, -2)
+scale = Vector2(1.5625, 1.25)
+sprite_frames = SubResource("SpriteFrames_rov02")
+animation = &"idle"
+autoplay = "idle"
+frame_progress = 0.586468
+
+[node name="coin_sound" type="AudioStreamPlayer2D" parent="."]
+position = Vector2(5, -2)
+stream = ExtResource("3_fokmu")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

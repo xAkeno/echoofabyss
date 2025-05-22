@@ -1,0 +1,49 @@
+[gd_scene load_steps=7 format=3 uid="uid://hta2u4gw10rg"]
+
+[ext_resource type="Texture2D" uid="uid://bf8heo2r3iy0b" path="res://assets/Legacy-Fantasy - High Forest 2.0/Legacy-Fantasy - High Forest 2.3/Background/Background.png" id="1_160d1"]
+[ext_resource type="PackedScene" uid="uid://cray0mrkgeb7y" path="res://scenes/ashoka/ahsoka.tscn" id="4_2v7c7"]
+[ext_resource type="PackedScene" uid="uid://bqwxpculs2qal" path="res://scenes/enemy/skeleton.tscn" id="5_kv6gl"]
+[ext_resource type="PackedScene" uid="uid://kfab266g510t" path="res://scenes/ui/finish_line.tscn" id="6_v2syt"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_gkipi"]
+size = Vector2(25, 791)
+
+[sub_resource type="TileSet" id="TileSet_xfyhd"]
+
+[node name="lvl2" type="Node"]
+
+[node name="TextureRect" type="TextureRect" parent="."]
+texture_filter = 1
+texture_repeat = 2
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 2363.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_160d1")
+expand_mode = 3
+
+[node name="ahsoka" parent="." instance=ExtResource("4_2v7c7")]
+position = Vector2(31, 601)
+
+[node name="skeleton3" parent="." node_paths=PackedStringArray("ahsoka") instance=ExtResource("5_kv6gl")]
+visible = false
+position = Vector2(135, 595)
+ahsoka = NodePath("../ahsoka")
+
+[node name="finishLine" parent="." instance=ExtResource("6_v2syt")]
+visible = false
+position = Vector2(6106, 543)
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(-12, 401)
+shape = SubResource("RectangleShape2D_gkipi")
+
+[node name="TileMap" type="TileMap" parent="."]
+format = 2
+
+[node name="TileMapLayer" type="TileMapLayer" parent="TileMap"]
+tile_set = SubResource("TileSet_xfyhd")

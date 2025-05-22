@@ -1,0 +1,86 @@
+[gd_scene load_steps=8 format=3 uid="uid://cl52il7pd6k3m"]
+
+[ext_resource type="Texture2D" uid="uid://clfe4sqct5dik" path="res://assets/Adventurer/adventurer-Sheet.png" id="2_1kcnp"]
+
+[sub_resource type="GDScript" id="GDScript_gd3ko"]
+script/source = "extends Area2D
+
+@export var dialog_key = \"\"
+var area_active = false
+
+func _input(event):
+	if area_active and event.is_action(\"accept\"):
+		print(\"i got used\")
+		SignalBus.emit_signal(\"display_dialog\",dialog_key)
+
+func _on_area_entered(area: Area2D) -> void:
+	area_active = true
+	
+
+func _on_area_exited(area: Area2D) -> void:
+	area_active = false
+	
+func _ready() -> void:
+	pass # Replace with function body.
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta: float) -> void:
+	pass
+"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bcx0w"]
+atlas = ExtResource("2_1kcnp")
+region = Rect2(0, 0, 50, 37)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_enamr"]
+atlas = ExtResource("2_1kcnp")
+region = Rect2(50, 0, 50, 37)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_luvqg"]
+atlas = ExtResource("2_1kcnp")
+region = Rect2(100, 0, 50, 37)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mbsmu"]
+atlas = ExtResource("2_1kcnp")
+region = Rect2(150, 0, 50, 37)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_1gwh8"]
+animations = [{
+"frames": [],
+"loop": true,
+"name": &"default_1",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bcx0w")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_enamr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_luvqg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mbsmu")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}]
+
+[node name="DialogArea" type="Area2D"]
+collision_layer = 0
+collision_mask = 2
+script = SubResource("GDScript_gd3ko")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_1gwh8")
+animation = &"idle"
+frame_progress = 0.119507
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]
+[connection signal="area_exited" from="." to="." method="_on_area_exited"]

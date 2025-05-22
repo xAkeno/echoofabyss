@@ -1,0 +1,17 @@
+{
+  "greeting": [
+    "Hello there!",
+    "Welcome to our game.",
+    "I hope you enjoy your adventure."
+  ],
+  "farewell": [
+    "Goodbye!",
+    "Thanks for playing.",
+    "See you next time!"
+  ],
+  "quest_intro": [
+    "Are you ready for your first quest?",
+    "You must find the lost sword in the forest.",
+    "Be careful out there!"
+  ]
+}

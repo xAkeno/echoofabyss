@@ -1,0 +1,79 @@
+[gd_scene load_steps=8 format=3 uid="uid://by82638s1sphk"]
+
+[ext_resource type="Texture2D" uid="uid://clfe4sqct5dik" path="res://assets/Adventurer/adventurer-Sheet.png" id="2_7q8gw"]
+
+[sub_resource type="GDScript" id="GDScript_gd3ko"]
+script/source = "extends Area2D
+
+@export var dialog_key = \"\"
+var area_active = false
+
+func _input(event):
+	if area_active and event.is_action(\"accept\"):
+		print(\"i got used\")
+		SignalBus.emit_signal(\"display_dialog\",dialog_key)
+
+func _on_area_entered(area: Area2D) -> void:
+	area_active = true
+	
+
+func _on_area_exited(area: Area2D) -> void:
+	area_active = false
+	
+func _ready() -> void:
+	pass # Replace with function body.
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta: float) -> void:
+	pass
+"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5f7yd"]
+atlas = ExtResource("2_7q8gw")
+region = Rect2(0, 0, 50, 37)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_q5syh"]
+atlas = ExtResource("2_7q8gw")
+region = Rect2(50, 0, 50, 37)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_o061m"]
+atlas = ExtResource("2_7q8gw")
+region = Rect2(100, 0, 50, 37)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_edmdn"]
+atlas = ExtResource("2_7q8gw")
+region = Rect2(150, 0, 50, 37)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_odd6d"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5f7yd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_q5syh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_o061m")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_edmdn")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="Node" type="Node"]
+
+[node name="DialogArea" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 2
+script = SubResource("GDScript_gd3ko")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DialogArea"]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="DialogArea"]
+sprite_frames = SubResource("SpriteFrames_odd6d")
+autoplay = "default"
