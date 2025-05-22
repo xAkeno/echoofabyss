@@ -14,6 +14,7 @@ func get_direction() -> float:
 	return Input.get_action_strength("right_mobile") - Input.get_action_strength("left_mobile")
 
 
+
 func _physics_process(delta: float) -> void:
 	# Add the gravity.
 	if not is_on_floor():

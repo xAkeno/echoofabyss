@@ -1677,7 +1677,6 @@ metadata/_edit_use_anchors_ = true
 
 [node name="ahsoka" parent="." instance=ExtResource("4_giwed")]
 position = Vector2(87, 602)
-speed = null
 
 [node name="Camera2D" parent="ahsoka" index="1"]
 zoom = Vector2(3, 3)

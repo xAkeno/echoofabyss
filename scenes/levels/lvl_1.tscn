@@ -1,4 +1,4 @@
-[gd_scene load_steps=39 format=3 uid="uid://b5vvqfpjpoq2s"]
+[gd_scene load_steps=41 format=3 uid="uid://b5vvqfpjpoq2s"]
 
 [ext_resource type="Script" uid="uid://cfx305ooeva1g" path="res://scenes/levels/lvl_1.gd" id="1_gd3ko"]
 [ext_resource type="Texture2D" uid="uid://qcxvsw1r50q3" path="res://assets/Kauzz Forest Tiles/Backgrounds/Midleground.png" id="2_5sf1a"]
@@ -13,12 +13,14 @@
 [ext_resource type="Script" uid="uid://cqrrdex4mbj3m" path="res://scenes/levels/area_2d.gd" id="10_xgh8i"]
 [ext_resource type="Texture2D" uid="uid://fcikjh2w7q83" path="res://control/transparentDark23.png" id="11_o40xn"]
 [ext_resource type="Script" uid="uid://bqucvqgaqfhrd" path="res://scenes/levels/label.gd" id="11_xejq1"]
+[ext_resource type="AudioStream" uid="uid://w6yp52tuvr70" path="res://assets/video-game-jump-soundeffect-37532.mp3" id="11_ymopi"]
 [ext_resource type="Script" uid="uid://3ennbfcwwax0" path="res://scenes/levels/killzone.gd" id="12_o40xn"]
 [ext_resource type="Script" uid="uid://b63be76vq5knc" path="res://scenes/levels/ddd.gd" id="12_qtpdg"]
 [ext_resource type="Texture2D" uid="uid://dyre3hfhvh5ut" path="res://control/transparentDark24.png" id="12_ymopi"]
 [ext_resource type="Texture2D" uid="uid://gg31f0qd16n8" path="res://control/transparentDark47.png" id="13_hs5yg"]
 [ext_resource type="Texture2D" uid="uid://clfe4sqct5dik" path="res://assets/Adventurer/adventurer-Sheet.png" id="14_144l7"]
 [ext_resource type="PackedScene" uid="uid://bsykhtvmq1yic" path="res://DialogPlayer.tscn" id="14_j1457"]
+[ext_resource type="AudioStream" uid="uid://bow0m0hlksmm4" path="res://assets/sword-sound-2-36274.mp3" id="14_xejq1"]
 [ext_resource type="Script" uid="uid://b7ma6gl1ef8pd" path="res://scenes/levels/fff.gd" id="15_j1457"]
 [ext_resource type="Script" uid="uid://b8pouyqarrv8s" path="res://scenes/levels/attackTutorial.gd" id="17_144l7"]
 
@@ -1953,22 +1955,30 @@ position = Vector2(1973, 508)
 [node name="ahsoka" parent="." instance=ExtResource("6_144l7")]
 position = Vector2(212, 584)
 
-[node name="CollisionShape2D" parent="ahsoka" index="0"]
+[node name="sfx_attack" type="AudioStreamPlayer" parent="ahsoka"]
+stream = ExtResource("14_xejq1")
+volume_db = 10.0
+
+[node name="sfx_jump" type="AudioStreamPlayer" parent="ahsoka"]
+stream = ExtResource("11_ymopi")
+volume_db = 10.0
+
+[node name="CollisionShape2D" parent="ahsoka" index="2"]
 position = Vector2(25, -14)
 
-[node name="Camera2D" parent="ahsoka" index="1"]
+[node name="Camera2D" parent="ahsoka" index="3"]
 position = Vector2(41, -19)
 zoom = Vector2(3.5, 3.5)
 limit_smoothed = true
 position_smoothing_enabled = false
 
-[node name="Sprite2D" parent="ahsoka" index="2"]
+[node name="Sprite2D" parent="ahsoka" index="4"]
 position = Vector2(26, -14)
 
-[node name="stateDebug" parent="ahsoka" index="6"]
+[node name="stateDebug" parent="ahsoka" index="8"]
 metadata/_edit_use_anchors_ = true
 
-[node name="sword" parent="ahsoka" index="7"]
+[node name="sword" parent="ahsoka" index="9"]
 position = Vector2(28, -8)
 
 [node name="dmgZone" parent="ahsoka/sword" index="0"]

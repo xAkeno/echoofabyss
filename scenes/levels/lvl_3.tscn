@@ -1334,7 +1334,6 @@ expand_mode = 3
 
 [node name="ahsoka" parent="." instance=ExtResource("4_ufxc7")]
 position = Vector2(80, 636)
-speed = null
 
 [node name="Camera2D" parent="ahsoka" index="1"]
 zoom = Vector2(3, 3)

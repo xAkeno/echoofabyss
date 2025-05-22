@@ -20,6 +20,10 @@ config/icon="res://icon.svg"
 SaveSystem="*res://SaveSystem.gd"
 SignalBus="*res://signal_bus.gd"
 
+[display]
+
+window/stretch/mode="viewport"
+
 [input]
 
 jump={
@@ -84,3 +88,4 @@ pointing/emulate_touch_from_mouse=true
 
 textures/canvas_textures/default_texture_filter=0
 renderer/rendering_method="mobile"
+textures/vram_compression/import_etc2_astc=true

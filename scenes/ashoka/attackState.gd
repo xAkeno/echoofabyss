@@ -9,6 +9,7 @@ extends State
 
 
 func state_input(event: InputEvent):
+
 	if(event.is_action_pressed("attack_mobile")):
 		timer.start()
 		
