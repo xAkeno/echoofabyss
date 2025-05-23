@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=4 uid="uid://cvu5uojyf6fq7"]
+[gd_scene load_steps=32 format=4 uid="uid://cvu5uojyf6fq7"]
 
 [ext_resource type="Script" uid="uid://dpscemagffsxc" path="res://scenes/levels/lvl_2.gd" id="1_a3nhj"]
 [ext_resource type="Texture2D" uid="uid://bf8heo2r3iy0b" path="res://assets/Legacy-Fantasy - High Forest 2.0/Legacy-Fantasy - High Forest 2.3/Background/Background.png" id="1_xkmnu"]
@@ -19,6 +19,8 @@
 [ext_resource type="PackedScene" uid="uid://c3vkpe48iqet0" path="res://pause_menu.tscn" id="11_ht08u"]
 [ext_resource type="AudioStream" uid="uid://cn7ssu4ceshbp" path="res://assets/decidemp3-14575.mp3" id="17_vfotp"]
 [ext_resource type="AudioStream" uid="uid://1huni58pnoqk" path="res://assets/bonus-points-190035.mp3" id="18_ht08u"]
+[ext_resource type="Script" uid="uid://cquvpip3cbshj" path="res://gamemanager.gd" id="20_01glb"]
+[ext_resource type="PackedScene" uid="uid://042iqgdh05v" path="res://scenes/ui/coin.tscn" id="21_7xwvs"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_pfhas"]
 texture = ExtResource("3_pfhas")
@@ -1344,6 +1346,7 @@ position = Vector2(1570, 556)
 
 [node name="finishLine" parent="." instance=ExtResource("5_8v8yk")]
 position = Vector2(6107, 544)
+bonfire_id = ""
 
 [node name="ahsoka" parent="." instance=ExtResource("6_vvnko")]
 position = Vector2(212, 584)
@@ -1412,6 +1415,14 @@ position = Vector2(1007, 449)
 texture_normal = ExtResource("10_7or60")
 action = "attack_mobile"
 
+[node name="score" type="Label" parent="ahsoka/CanvasLayer"]
+unique_name_in_owner = true
+offset_left = 1076.0
+offset_top = 14.0
+offset_right = 1134.0
+offset_bottom = 37.0
+text = "Coin - 0"
+
 [node name="DialogInteractionArea" type="Area2D" parent="ahsoka"]
 position = Vector2(27, -13)
 collision_layer = 2
@@ -1442,11 +1453,11 @@ offset_bottom = -14.0
 metadata/_edit_use_anchors_ = true
 
 [node name="save3" type="Area2D" parent="."]
-position = Vector2(2584, 496)
+position = Vector2(5014, 571)
 script = ExtResource("8_gkipi")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="save3"]
-position = Vector2(2432, 81)
+position = Vector2(3, 4)
 shape = SubResource("RectangleShape2D_8v8yk")
 
 [node name="Label" type="Label" parent="save3"]
@@ -1469,6 +1480,58 @@ stream = ExtResource("17_vfotp")
 
 [node name="sfx_finish" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("18_ht08u")
+
+[node name="gamemanager" type="Node" parent="."]
+unique_name_in_owner = true
+script = ExtResource("20_01glb")
+
+[node name="coin" parent="." instance=ExtResource("21_7xwvs")]
+position = Vector2(3419, 602)
+
+[node name="coin2" parent="." instance=ExtResource("21_7xwvs")]
+position = Vector2(5377, 237)
+
+[node name="coin11" parent="." instance=ExtResource("21_7xwvs")]
+position = Vector2(5323, 234)
+
+[node name="coin12" parent="." instance=ExtResource("21_7xwvs")]
+position = Vector2(4995, 412)
+
+[node name="coin13" parent="." instance=ExtResource("21_7xwvs")]
+position = Vector2(5012, 704)
+
+[node name="coin14" parent="." instance=ExtResource("21_7xwvs")]
+position = Vector2(4537, 563)
+
+[node name="coin15" parent="." instance=ExtResource("21_7xwvs")]
+position = Vector2(5722, 337)
+
+[node name="coin16" parent="." instance=ExtResource("21_7xwvs")]
+position = Vector2(5742, 562)
+
+[node name="coin3" parent="." instance=ExtResource("21_7xwvs")]
+position = Vector2(3532, 409)
+
+[node name="coin4" parent="." instance=ExtResource("21_7xwvs")]
+position = Vector2(2887, 605)
+
+[node name="coin5" parent="." instance=ExtResource("21_7xwvs")]
+position = Vector2(2526, 352)
+
+[node name="coin6" parent="." instance=ExtResource("21_7xwvs")]
+position = Vector2(1510, 384)
+
+[node name="coin7" parent="." instance=ExtResource("21_7xwvs")]
+position = Vector2(1265, 353)
+
+[node name="coin8" parent="." instance=ExtResource("21_7xwvs")]
+position = Vector2(1941, 470)
+
+[node name="coin9" parent="." instance=ExtResource("21_7xwvs")]
+position = Vector2(1467, 561)
+
+[node name="coin10" parent="." instance=ExtResource("21_7xwvs")]
+position = Vector2(524, 511)
 
 [connection signal="pressed" from="ahsoka/CanvasLayer/Button" to="." method="_on_button_pressed"]
 [connection signal="body_entered" from="save2" to="." method="_on_save_2_body_entered"]

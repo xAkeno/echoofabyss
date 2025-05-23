@@ -1,24 +1,40 @@
 extends Node
 
-const SAVE_PATH = "user://save_data.cfg"
+# SaveSystem.gd
+var save_data = {}
 
-func save_game(bonfire_id: String, position: Vector2, current: String):
-	var config = ConfigFile.new()
-	config.set_value("Save", "bonfire_id", bonfire_id)
-	config.set_value("Save", "position_x", position.x)
-	config.set_value("Save", "position_y", position.y)
-	config.set_value("Save","level",current)
-	config.save(SAVE_PATH)
-	print("Game saved at bonfire: ", bonfire_id)
+# SaveSystem.gd
+static func save_game(bonfire_id: String, position: Vector2, scene_path: String, coins: int):
+	var save_data = {
+		"bonfire_id": bonfire_id,
+		"position": position,
+		"scene": scene_path,
+		"coins": coins
+	}
+	var file = FileAccess.open("user://savegame.save", FileAccess.WRITE)
+	file.store_var(save_data)
+	file.close()
 
-func load_game(current: String):
-	var config = ConfigFile.new()
-	var err = config.load(SAVE_PATH)
-	var saved_level = config.get_value("Save", "level", "")
-	if saved_level != current:
-		return null  # Current level doesn't match saved level
-	var pos = Vector2(
-		config.get_value("Save", "position_x", 0),
-		config.get_value("Save", "position_y", 0)
-	)
-	return pos
+static func load_game():
+	if not FileAccess.file_exists("user://savegame.save"):
+		return null
+	var file = FileAccess.open("user://savegame.save", FileAccess.READ)
+	var data = file.get_var()
+	file.close()
+	return data
+
+	
+static func clear_save():
+	var path = "user://savegame.save"
+	if FileAccess.file_exists(path):
+		var dir = DirAccess.open("user://")
+		if dir:
+			var err = dir.remove("savegame.save")
+			if err != OK:
+				push_error("Failed to delete save file")
+			else:
+				print("Save file cleared successfully.")
+		else:
+			push_error("Failed to open user directory")
+	else:
+		print("No save file to clear.")

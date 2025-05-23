@@ -42,13 +42,19 @@ func _ready():
 	attack.position = Vector2(screen_size.x - button_size.x - margin, screen_size.y - button_size.y - margin)
 	
 	##
-	var current = get_tree().current_scene.scene_file_path
-	var saved_pos = SaveSystem.load_game(current)
-	if saved_pos:
-		$ahsoka.global_position = saved_pos
-		print("Loaded player at saved bonfire position.")
-	$ahsoka.animation_tree.active = true
-	label.text = "Press D to move right"
+	var current_scene = get_tree().current_scene.scene_file_path
+	var saved_data = SaveSystem.load_game()
+	if saved_data != null:
+		if saved_data.has("position"):
+			var pos = saved_data["position"]
+			if typeof(pos) == TYPE_VECTOR2:
+				$ahsoka.global_position = pos
+			else:
+				print("Warning: Saved position is not a Vector2")
+		else:
+			print("No position key in saved data")
+	else:
+		print("No saved data found")
 
 func _process(delta):
 	match step:
@@ -84,28 +90,32 @@ func _on_killzone_body_entered(body: Node2D) -> void:
 
 
 func _on_area_2d_body_entered(body: Node2D) -> void:
-	var current = get_tree().current_scene.scene_file_path
 	if body.name == "ahsoka":
+		var current = get_tree().current_scene.scene_file_path
+		var gm = %gamemanager  # Access the global GameManager
 		print("Resting at bonfire: ", bonfire_id)
-		SaveSystem.save_game(bonfire_id,$ahsoka.global_position,current)
+		
+		SaveSystem.save_game(
+			bonfire_id,
+			$ahsoka.global_position,
+			current,
+			gm.points
+		)
+		
+		print("Game saved with position:", $ahsoka.global_position, " and coins:", gm.points)
 
-	pass # Replace with function body.
 	
 
 
 func _on_save_2_body_entered(body: Node2D) -> void:
-	var current = get_tree().current_scene.scene_file_path
 	if body.name == "ahsoka":
-		print("Resting at bonfire: ", bonfire_id)
+		var current = get_tree().current_scene.scene_file_path
+		var gm = %gamemanager  # Access global GameManager
+		SaveSystem.save_game(bonfire_id, $ahsoka.global_position, current, gm.points)
 		$save2/Label.text = "Game Saved"
 		save_sound.play()
-		print("save sound active")
-		$save2/Label.show()  # Optional, in case it's hidden
-		SaveSystem.save_game(bonfire_id,$ahsoka.global_position,current)
-		#await get_tree().create_timer(2.0).timeout  # Wait 2 seconds
-#
-		#$save2/Label.hide()
-	pass # Replace with function body.
+		$save2/Label.show()
+
 
 func _input(event):
 	if event.is_action_pressed("skip"):

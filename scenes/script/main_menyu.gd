@@ -11,6 +11,7 @@ func _on_menu_pressed() -> void:
 
 
 func _on_idk_pressed() -> void:
+	SaveSystem.clear_save()
 	pass # Replace with function body.
 
 

@@ -1,4 +1,4 @@
-[gd_scene load_steps=40 format=4 uid="uid://dojhxii4jikgb"]
+[gd_scene load_steps=41 format=4 uid="uid://dojhxii4jikgb"]
 
 [ext_resource type="Script" uid="uid://c42tgpsi7qotw" path="res://scenes/levels/lvl_4.gd" id="1_o5i11"]
 [ext_resource type="Texture2D" uid="uid://cwrh0hbnevq2k" path="res://assets/Legacy-Fantasy - High Forest 2.0/Legacy-Fantasy - High Forest 2.3/Assets/Tiles.png" id="2_o5i11"]
@@ -23,6 +23,7 @@
 [ext_resource type="Script" uid="uid://cqrrdex4mbj3m" path="res://scenes/levels/area_2d.gd" id="12_ov6ck"]
 [ext_resource type="AudioStream" uid="uid://cn7ssu4ceshbp" path="res://assets/decidemp3-14575.mp3" id="21_86qkc"]
 [ext_resource type="AudioStream" uid="uid://1huni58pnoqk" path="res://assets/bonus-points-190035.mp3" id="22_jj1nn"]
+[ext_resource type="Script" uid="uid://cquvpip3cbshj" path="res://gamemanager.gd" id="24_qctpd"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_a6fhx"]
 texture = ExtResource("3_5pk66")
@@ -1601,8 +1602,7 @@ visible = false
 position = Vector2(1570, 556)
 
 [node name="finishLine" parent="." instance=ExtResource("6_2rmxl")]
-visible = false
-position = Vector2(6106, 543)
+position = Vector2(6424, 557)
 
 [node name="ahsoka" parent="." instance=ExtResource("4_giwed")]
 position = Vector2(32, 611)
@@ -1670,6 +1670,14 @@ action = "jump_mobile"
 position = Vector2(1007, 449)
 texture_normal = ExtResource("9_5i63c")
 action = "attack_mobile"
+
+[node name="score" type="Label" parent="ahsoka/CanvasLayer"]
+unique_name_in_owner = true
+offset_left = 1076.0
+offset_top = 14.0
+offset_right = 1134.0
+offset_bottom = 37.0
+text = "Coin - 0"
 
 [node name="DialogInteractionArea" type="Area2D" parent="ahsoka"]
 position = Vector2(27, -13)
@@ -1797,14 +1805,15 @@ position = Vector2(5615, 415)
 [node name="coin13" parent="." instance=ExtResource("9_giwed")]
 position = Vector2(5658, 733)
 
-[node name="finishLine2" parent="." instance=ExtResource("6_2rmxl")]
-position = Vector2(6420, 558)
-
 [node name="sfx_save" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("21_86qkc")
 
 [node name="sfx_finish" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("22_jj1nn")
+
+[node name="gamemanager" type="Node" parent="."]
+unique_name_in_owner = true
+script = ExtResource("24_qctpd")
 
 [connection signal="pressed" from="ahsoka/CanvasLayer/Button" to="." method="_on_button_pressed"]
 [connection signal="body_entered" from="killzone" to="." method="_on_killzone_body_entered"]

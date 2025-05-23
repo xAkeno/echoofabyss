@@ -1,4 +1,6 @@
 extends Node
+@export var bonfire_id: String
+@export var spawn_point: Node2D  # optional, a child node or position
 @onready var save_sound: AudioStreamPlayer = $sfx_save
 
 # Called when the node enters the scene tree for the first time.
@@ -31,12 +33,19 @@ func _ready() -> void:
 	attack.position = Vector2(screen_size.x - button_size.x - margin, screen_size.y - button_size.y - margin)
 	
 	##
-	var current = get_tree().current_scene.scene_file_path
-	var saved_pos = SaveSystem.load_game(current)
-	if saved_pos:
-		$ahsoka.global_position = saved_pos
-		print("Loaded player at saved bonfire position.")
-	$ahsoka.animation_tree.active = true
+	var current_scene = get_tree().current_scene.scene_file_path
+	var saved_data = SaveSystem.load_game()
+	if saved_data != null:
+		if saved_data.has("position"):
+			var pos = saved_data["position"]
+			if typeof(pos) == TYPE_VECTOR2:
+				$ahsoka.global_position = pos
+			else:
+				print("Warning: Saved position is not a Vector2")
+		else:
+			print("No position key in saved data")
+	else:
+		print("No saved data found")
 
 
 
@@ -50,3 +59,43 @@ func _on_button_pressed() -> void:
 	$ahsoka/CanvasLayer/PauseMenu.visible = true
 	$ahsoka/CanvasLayer/PauseMenu.pause()
 	pass # Replace with function body.
+
+
+func _on_save_7_body_entered(body: Node2D) -> void:
+	if body.name == "ahsoka":
+		var current = get_tree().current_scene.scene_file_path
+		var gm = %gamemanager  # Access global GameManager
+		SaveSystem.save_game(bonfire_id, $ahsoka.global_position, current, gm.points)
+		$save7/Label.text = "Game Saved"
+		save_sound.play()
+		$save7/Label.show()
+
+
+func _on_save_8_body_entered(body: Node2D) -> void:
+	if body.name == "ahsoka":
+		var current = get_tree().current_scene.scene_file_path
+		var gm = %gamemanager  # Access global GameManager
+		SaveSystem.save_game(bonfire_id, $ahsoka.global_position, current, gm.points)
+		$save8/Label.text = "Game Saved"
+		save_sound.play()
+		$save8/Label.show()
+
+
+func _on_save_9_body_entered(body: Node2D) -> void:
+	if body.name == "ahsoka":
+		var current = get_tree().current_scene.scene_file_path
+		var gm = %gamemanager  # Access global GameManager
+		SaveSystem.save_game(bonfire_id, $ahsoka.global_position, current, gm.points)
+		$save9/Label.text = "Game Saved"
+		save_sound.play()
+		$save9/Label.show()
+
+
+func _on_save_10_body_entered(body: Node2D) -> void:
+	if body.name == "ahsoka":
+		var current = get_tree().current_scene.scene_file_path
+		var gm = %gamemanager  # Access global GameManager
+		SaveSystem.save_game(bonfire_id, $ahsoka.global_position, current, gm.points)
+		$save10/Label.text = "Game Saved"
+		save_sound.play()
+		$save10/Label.show()

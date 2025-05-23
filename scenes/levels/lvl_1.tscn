@@ -2812,6 +2812,7 @@ tile_set = SubResource("TileSet_myeqb")
 [node name="finishLine" parent="." instance=ExtResource("7_0euni")]
 visible = false
 position = Vector2(4703, 501)
+bonfire_id = ""
 
 [node name="coin" parent="." instance=ExtResource("8_4p0am")]
 position = Vector2(736, 518)
@@ -2820,7 +2821,7 @@ position = Vector2(736, 518)
 position = Vector2(1490, 447)
 
 [node name="coin3" parent="." instance=ExtResource("8_4p0am")]
-position = Vector2(1940, 516)
+position = Vector2(2041, 512)
 
 [node name="coin4" parent="." instance=ExtResource("8_4p0am")]
 position = Vector2(2433, 498)
