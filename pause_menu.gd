@@ -2,6 +2,7 @@ extends Control
 
 func resume():
 	$AnimationPlayer.play("RESET")
+	$".".visible = false
 	get_tree().paused = false
 	print(get_tree().paused)
 	

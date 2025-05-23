@@ -158,4 +158,5 @@ func _on_dialog_area_body_entered(body: Node2D) -> void:
 
 func _on_button_pressed() -> void:
 	print("menu")
+	$ahsoka/CanvasLayer/PauseMenu.visible = true
 	$ahsoka/CanvasLayer/PauseMenu.pause()

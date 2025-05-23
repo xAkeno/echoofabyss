@@ -47,5 +47,6 @@ func _process(delta: float) -> void:
 
 func _on_button_pressed() -> void:
 	print("menu")
+	$ahsoka/CanvasLayer/PauseMenu.visible = true
 	$ahsoka/CanvasLayer/PauseMenu.pause()
 	pass # Replace with function body.
