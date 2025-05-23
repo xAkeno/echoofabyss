@@ -1,4 +1,4 @@
-[gd_scene load_steps=48 format=4 uid="uid://b5vvqfpjpoq2s"]
+[gd_scene load_steps=49 format=4 uid="uid://b5vvqfpjpoq2s"]
 
 [ext_resource type="Script" uid="uid://cfx305ooeva1g" path="res://scenes/levels/lvl_1.gd" id="1_gd3ko"]
 [ext_resource type="Texture2D" uid="uid://qcxvsw1r50q3" path="res://assets/Kauzz Forest Tiles/Backgrounds/Midleground.png" id="2_5sf1a"]
@@ -28,6 +28,7 @@
 [ext_resource type="AudioStream" uid="uid://bow0m0hlksmm4" path="res://assets/sword-sound-2-36274.mp3" id="14_xejq1"]
 [ext_resource type="Script" uid="uid://b7ma6gl1ef8pd" path="res://scenes/levels/fff.gd" id="15_j1457"]
 [ext_resource type="Script" uid="uid://b8pouyqarrv8s" path="res://scenes/levels/attackTutorial.gd" id="17_144l7"]
+[ext_resource type="Script" uid="uid://cquvpip3cbshj" path="res://gamemanager.gd" id="29_myeqb"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_sw1tr"]
 texture = ExtResource("3_qtpdg")
@@ -2818,6 +2819,15 @@ position = Vector2(736, 518)
 [node name="coin2" parent="." instance=ExtResource("8_4p0am")]
 position = Vector2(1490, 447)
 
+[node name="coin3" parent="." instance=ExtResource("8_4p0am")]
+position = Vector2(1940, 516)
+
+[node name="coin4" parent="." instance=ExtResource("8_4p0am")]
+position = Vector2(2433, 498)
+
+[node name="coin5" parent="." instance=ExtResource("8_4p0am")]
+position = Vector2(3548, 468)
+
 [node name="game_manager" type="Node" parent="."]
 
 [node name="skeleton" parent="." instance=ExtResource("9_eeeou")]
@@ -2890,6 +2900,14 @@ action = "jump_mobile"
 position = Vector2(1007, 449)
 texture_normal = ExtResource("13_hs5yg")
 action = "attack_mobile"
+
+[node name="score" type="Label" parent="ahsoka/CanvasLayer"]
+unique_name_in_owner = true
+offset_left = 1076.0
+offset_top = 14.0
+offset_right = 1134.0
+offset_bottom = 37.0
+text = "Coin - 0"
 
 [node name="DialogInteractionArea" type="Area2D" parent="ahsoka"]
 position = Vector2(27, -13)
@@ -3019,6 +3037,10 @@ text = "Press \"F\" to attack"
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 position = Vector2(73.25, 13)
 shape = SubResource("RectangleShape2D_0euni")
+
+[node name="gamemanager" type="Node" parent="."]
+unique_name_in_owner = true
+script = ExtResource("29_myeqb")
 
 [connection signal="pressed" from="ahsoka/CanvasLayer/Button" to="." method="_on_button_pressed"]
 [connection signal="body_entered" from="othersideMain" to="." method="_on_otherside_main_body_entered"]
