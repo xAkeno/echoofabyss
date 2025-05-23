@@ -1,9 +1,10 @@
-[gd_scene load_steps=45 format=3 uid="uid://b5vvqfpjpoq2s"]
+[gd_scene load_steps=46 format=3 uid="uid://b5vvqfpjpoq2s"]
 
 [ext_resource type="Script" uid="uid://cfx305ooeva1g" path="res://scenes/levels/lvl_1.gd" id="1_gd3ko"]
 [ext_resource type="Texture2D" uid="uid://qcxvsw1r50q3" path="res://assets/Kauzz Forest Tiles/Backgrounds/Midleground.png" id="2_5sf1a"]
 [ext_resource type="Texture2D" uid="uid://bf8heo2r3iy0b" path="res://assets/Legacy-Fantasy - High Forest 2.0/Legacy-Fantasy - High Forest 2.3/Background/Background.png" id="2_hs5yg"]
 [ext_resource type="AudioStream" uid="uid://cn7ssu4ceshbp" path="res://assets/decidemp3-14575.mp3" id="2_lp3tw"]
+[ext_resource type="PackedScene" uid="uid://c3vkpe48iqet0" path="res://pause_menu.tscn" id="2_pd24p"]
 [ext_resource type="AudioStream" uid="uid://1huni58pnoqk" path="res://assets/bonus-points-190035.mp3" id="3_4nmen"]
 [ext_resource type="Texture2D" uid="uid://cwrh0hbnevq2k" path="res://assets/Legacy-Fantasy - High Forest 2.0/Legacy-Fantasy - High Forest 2.3/Assets/Tiles.png" id="3_qtpdg"]
 [ext_resource type="Texture2D" uid="uid://yrdypmlvabc2" path="res://assets/Kauzz Forest Tiles/Enviroment.png" id="4_gd3ko"]
@@ -2014,6 +2015,15 @@ stream = ExtResource("12_hs5yg")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="ahsoka"]
 
+[node name="PauseMenu" parent="ahsoka/CanvasLayer" instance=ExtResource("2_pd24p")]
+
+[node name="Button" type="Button" parent="ahsoka/CanvasLayer"]
+offset_left = 15.0
+offset_top = 12.0
+offset_right = 68.0
+offset_bottom = 43.0
+text = "Menu"
+
 [node name="left" type="TouchScreenButton" parent="ahsoka/CanvasLayer"]
 position = Vector2(40, 543)
 texture_normal = ExtResource("10_xejq1")
@@ -2046,6 +2056,12 @@ shape = SubResource("RectangleShape2D_xgh8i")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
 position = Vector2(-12, 401)
+shape = SubResource("RectangleShape2D_w6uo3")
+
+[node name="StaticBody2D2" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D2"]
+position = Vector2(4771, 403)
 shape = SubResource("RectangleShape2D_w6uo3")
 
 [node name="InstructionLabel" type="Label" parent="."]
@@ -2157,6 +2173,7 @@ text = "Press \"F\" to attack"
 position = Vector2(73.25, 13)
 shape = SubResource("RectangleShape2D_0euni")
 
+[connection signal="pressed" from="ahsoka/CanvasLayer/Button" to="." method="_on_button_pressed"]
 [connection signal="body_entered" from="othersideMain" to="." method="_on_otherside_main_body_entered"]
 [connection signal="body_entered" from="othersideMain2" to="." method="_on_otherside_main_2_body_entered"]
 [connection signal="body_entered" from="killzone" to="." method="_on_killzone_body_entered"]

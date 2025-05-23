@@ -154,3 +154,8 @@ func _on_beginning_area_exited(area: Area2D) -> void:
 func _on_dialog_area_body_entered(body: Node2D) -> void:
 	print("hhh")
 	pass # Replace with function body.
+
+
+func _on_button_pressed() -> void:
+	print("menu")
+	$ahsoka/CanvasLayer/PauseMenu.pause()
