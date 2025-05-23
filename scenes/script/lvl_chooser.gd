@@ -1,7 +1,10 @@
 extends Control
 
 
-
+func _ready() -> void:
+	$AudioStreamPlayer.stream.loop = true  # Ensure the audio stream loops
+	$AudioStreamPlayer.play()
+	print("sound on2")
 
 func _on_lvl_1_pressed() -> void:
 	get_tree().change_scene_to_file("res://scenes/levels/lvl_1.tscn")

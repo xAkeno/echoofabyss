@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://bngaxvyaqymu3"]
+[gd_scene load_steps=5 format=3 uid="uid://bngaxvyaqymu3"]
 
 [ext_resource type="Script" uid="uid://dmebdsxi4kkfd" path="res://scenes/script/main_menyu.gd" id="1_ovxvm"]
 [ext_resource type="Texture2D" uid="uid://c5dd2vhlu8rdh" path="res://assets/Medieval_Castle_Asset_Pack/Background/layer_1.png" id="2_ug6k3"]
 [ext_resource type="Texture2D" uid="uid://bq5sjr87ng5hf" path="res://assets/ECHOES-OF-ABYSS-5-23-2025.png" id="3_fje1k"]
+[ext_resource type="AudioStream" uid="uid://caglydmnp7f4b" path="res://assets/m30_dream_song-77650.mp3" id="4_d7ru5"]
 
 [node name="MENU" type="Control"]
 layout_mode = 3
@@ -64,6 +65,10 @@ offset_top = 64.0
 offset_right = 1098.0
 offset_bottom = 294.0
 texture = ExtResource("3_fje1k")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_d7ru5")
+autoplay = true
 
 [connection signal="pressed" from="VBoxContainer/menu" to="." method="_on_menu_pressed"]
 [connection signal="pressed" from="VBoxContainer/idk" to="." method="_on_idk_pressed"]
