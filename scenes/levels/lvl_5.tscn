@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=4 uid="uid://hta2u4gw10rg"]
+[gd_scene load_steps=28 format=4 uid="uid://hta2u4gw10rg"]
 
 [ext_resource type="Script" uid="uid://cmrn0qopoxawd" path="res://scenes/levels/lvl_5.gd" id="1_qj5wt"]
 [ext_resource type="Texture2D" uid="uid://cwrh0hbnevq2k" path="res://assets/Legacy-Fantasy - High Forest 2.0/Legacy-Fantasy - High Forest 2.3/Assets/Tiles.png" id="2_01ajs"]
@@ -15,6 +15,7 @@
 [ext_resource type="Texture2D" uid="uid://gg31f0qd16n8" path="res://control/transparentDark47.png" id="10_tn1p7"]
 [ext_resource type="AudioStream" uid="uid://b5ogf7hgmu61c" path="res://assets/land2-43790.mp3" id="11_hw36d"]
 [ext_resource type="Texture2D" uid="uid://dyre3hfhvh5ut" path="res://control/transparentDark24.png" id="11_tg75c"]
+[ext_resource type="PackedScene" uid="uid://c3vkpe48iqet0" path="res://pause_menu.tscn" id="12_xor5o"]
 [ext_resource type="AudioStream" uid="uid://cn7ssu4ceshbp" path="res://assets/decidemp3-14575.mp3" id="16_brelg"]
 [ext_resource type="AudioStream" uid="uid://1huni58pnoqk" path="res://assets/bonus-points-190035.mp3" id="17_xor5o"]
 
@@ -1572,7 +1573,7 @@ sources/1 = SubResource("TileSetAtlasSource_v2syt")
 sources/2 = SubResource("TileSetAtlasSource_qj5wt")
 sources/3 = SubResource("TileSetAtlasSource_tn1p7")
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_brelg"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_alaue"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_gkipi"]
 size = Vector2(25, 791)
@@ -1638,6 +1639,15 @@ stream = ExtResource("11_hw36d")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="ahsoka"]
 
+[node name="PauseMenu" parent="ahsoka/CanvasLayer" instance=ExtResource("12_xor5o")]
+
+[node name="Button" type="Button" parent="ahsoka/CanvasLayer"]
+offset_left = 15.0
+offset_top = 12.0
+offset_right = 68.0
+offset_bottom = 43.0
+text = "Menu"
+
 [node name="left" type="TouchScreenButton" parent="ahsoka/CanvasLayer"]
 position = Vector2(40, 543)
 texture_normal = ExtResource("9_qj5wt")
@@ -1664,7 +1674,7 @@ collision_layer = 2
 collision_mask = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ahsoka/DialogInteractionArea"]
-shape = SubResource("RectangleShape2D_brelg")
+shape = SubResource("RectangleShape2D_alaue")
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
 
@@ -1677,5 +1687,7 @@ stream = ExtResource("16_brelg")
 
 [node name="sfx_finish" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("17_xor5o")
+
+[connection signal="pressed" from="ahsoka/CanvasLayer/Button" to="." method="_on_button_pressed"]
 
 [editable path="ahsoka"]

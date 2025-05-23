@@ -78,3 +78,9 @@ func _on_killzone_body_entered(body: Node2D) -> void:
 	if body.name == "ahsoka":
 		get_tree().call_deferred("reload_current_scene")
 	pass # Replace with function body.
+	
+
+func _on_button_pressed() -> void:
+	print("menu")
+	$ahsoka/CanvasLayer/PauseMenu.pause()
+	pass # Replace with function body.

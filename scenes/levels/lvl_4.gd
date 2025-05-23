@@ -79,3 +79,9 @@ func _on_save_7_body_entered(body: Node2D) -> void:
 
 		$save6/Label.hide()
 	pass # Replace with function body.
+
+
+func _on_button_pressed() -> void:
+	print("menu")
+	$ahsoka/CanvasLayer/PauseMenu.pause()
+	pass # Replace with function body.

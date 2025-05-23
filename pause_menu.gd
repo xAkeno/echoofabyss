@@ -12,6 +12,7 @@ func pause():
 	
 	
 func restart():
+	resume()
 	get_tree().reload_current_scene()
 	
 func quit():
@@ -35,8 +36,8 @@ func _on_resume_pressed() -> void:
 
 
 func _on_menu_pressed() -> void:
-	
-	pass # Replace with function body.
+	resume()
+	get_tree().change_scene_to_file("res://scenes/levels/main_menyu.tscn")
 
 
 func _on_restart_pressed() -> void:
