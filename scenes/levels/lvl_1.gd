@@ -12,8 +12,7 @@ var area_active = false
 var attack_count = 0
 var attack_timer = 0.0
 const DOUBLE_ATTACK_MAX_TIME = 0.4
-
-
+@onready var save_sound: AudioStreamPlayer = $sfx_save
 func _ready():
 	var left = $ahsoka/CanvasLayer/left
 	var right = $ahsoka/CanvasLayer/right
@@ -99,6 +98,8 @@ func _on_save_2_body_entered(body: Node2D) -> void:
 	if body.name == "ahsoka":
 		print("Resting at bonfire: ", bonfire_id)
 		$save2/Label.text = "Game Saved"
+		save_sound.play()
+		print("save sound active")
 		$save2/Label.show()  # Optional, in case it's hidden
 		SaveSystem.save_game(bonfire_id,$ahsoka.global_position,current)
 		#await get_tree().create_timer(2.0).timeout  # Wait 2 seconds

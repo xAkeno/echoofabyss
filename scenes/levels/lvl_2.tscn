@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=4 uid="uid://cvu5uojyf6fq7"]
+[gd_scene load_steps=29 format=4 uid="uid://cvu5uojyf6fq7"]
 
 [ext_resource type="Script" uid="uid://dpscemagffsxc" path="res://scenes/levels/lvl_2.gd" id="1_a3nhj"]
 [ext_resource type="Texture2D" uid="uid://bf8heo2r3iy0b" path="res://assets/Legacy-Fantasy - High Forest 2.0/Legacy-Fantasy - High Forest 2.3/Background/Background.png" id="1_xkmnu"]
@@ -8,11 +8,16 @@
 [ext_resource type="PackedScene" uid="uid://kfab266g510t" path="res://scenes/ui/finish_line.tscn" id="5_8v8yk"]
 [ext_resource type="PackedScene" uid="uid://cray0mrkgeb7y" path="res://scenes/ashoka/ahsoka.tscn" id="6_vvnko"]
 [ext_resource type="Texture2D" uid="uid://dkcnjuntq6dm3" path="res://control/transparentDark22.png" id="7_yokvh"]
+[ext_resource type="AudioStream" uid="uid://bow0m0hlksmm4" path="res://assets/sword-sound-2-36274.mp3" id="8_d84b7"]
 [ext_resource type="Script" uid="uid://cqrrdex4mbj3m" path="res://scenes/levels/area_2d.gd" id="8_gkipi"]
 [ext_resource type="Texture2D" uid="uid://fcikjh2w7q83" path="res://control/transparentDark23.png" id="8_lojll"]
+[ext_resource type="AudioStream" uid="uid://cqgf3rg1thc20" path="res://assets/funny-spring-jump-277576.mp3" id="9_7or60"]
 [ext_resource type="Script" uid="uid://3ennbfcwwax0" path="res://scenes/levels/killzone.gd" id="9_8v8yk"]
 [ext_resource type="Texture2D" uid="uid://dyre3hfhvh5ut" path="res://control/transparentDark24.png" id="9_d84b7"]
 [ext_resource type="Texture2D" uid="uid://gg31f0qd16n8" path="res://control/transparentDark47.png" id="10_7or60"]
+[ext_resource type="AudioStream" uid="uid://b5ogf7hgmu61c" path="res://assets/land2-43790.mp3" id="10_vfotp"]
+[ext_resource type="AudioStream" uid="uid://cn7ssu4ceshbp" path="res://assets/decidemp3-14575.mp3" id="17_vfotp"]
+[ext_resource type="AudioStream" uid="uid://1huni58pnoqk" path="res://assets/bonus-points-190035.mp3" id="18_ht08u"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_pfhas"]
 texture = ExtResource("3_pfhas")
@@ -1294,7 +1299,7 @@ physics_layer_0/collision_layer = 1
 sources/0 = SubResource("TileSetAtlasSource_gkipi")
 sources/1 = SubResource("TileSetAtlasSource_8v8yk")
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_vfotp"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ht08u"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_gkipi"]
 size = Vector2(25, 791)
@@ -1336,6 +1341,9 @@ tile_set = SubResource("TileSet_oxklq")
 [node name="skeleton3" parent="." instance=ExtResource("4_gkipi")]
 position = Vector2(1570, 556)
 
+[node name="finishLine" parent="." instance=ExtResource("5_8v8yk")]
+position = Vector2(6107, 541)
+
 [node name="ahsoka" parent="." instance=ExtResource("6_vvnko")]
 position = Vector2(212, 584)
 
@@ -1344,7 +1352,7 @@ position = Vector2(25, -14)
 
 [node name="Camera2D" parent="ahsoka" index="1"]
 position = Vector2(41, -19)
-zoom = Vector2(3.5, 3.5)
+zoom = Vector2(3.2, 3.2)
 limit_smoothed = true
 position_smoothing_enabled = false
 
@@ -1352,6 +1360,7 @@ position_smoothing_enabled = false
 position = Vector2(26, -14)
 
 [node name="stateDebug" parent="ahsoka" index="6"]
+visible = false
 metadata/_edit_use_anchors_ = true
 
 [node name="sword" parent="ahsoka" index="7"]
@@ -1359,6 +1368,17 @@ position = Vector2(28, -8)
 
 [node name="dmgZone" parent="ahsoka/sword" index="0"]
 position = Vector2(15, -7)
+
+[node name="sfx_attack" type="AudioStreamPlayer" parent="ahsoka"]
+stream = ExtResource("8_d84b7")
+volume_db = 10.0
+
+[node name="sfx_jump" type="AudioStreamPlayer" parent="ahsoka"]
+stream = ExtResource("9_7or60")
+volume_db = 5.0
+
+[node name="sfx_land" type="AudioStreamPlayer" parent="ahsoka"]
+stream = ExtResource("10_vfotp")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="ahsoka"]
 
@@ -1388,10 +1408,7 @@ collision_layer = 2
 collision_mask = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ahsoka/DialogInteractionArea"]
-shape = SubResource("RectangleShape2D_vfotp")
-
-[node name="finishLine" parent="." instance=ExtResource("5_8v8yk")]
-position = Vector2(6106, 543)
+shape = SubResource("RectangleShape2D_ht08u")
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
 
@@ -1436,6 +1453,12 @@ script = ExtResource("9_8v8yk")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="killzone"]
 position = Vector2(-25, 18)
 shape = SubResource("WorldBoundaryShape2D_vr6yd")
+
+[node name="sfx_save" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("17_vfotp")
+
+[node name="sfx_finish" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("18_ht08u")
 
 [connection signal="body_entered" from="save2" to="." method="_on_save_2_body_entered"]
 [connection signal="body_entered" from="save3" to="." method="_on_save_3_body_entered"]

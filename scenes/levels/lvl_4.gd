@@ -1,7 +1,7 @@
 extends Node
 @export var bonfire_id: String
 @export var spawn_point: Node2D  # optional, a child node or position
-
+@onready var save_sound: AudioStreamPlayer = $sfx_save
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	var left = $ahsoka/CanvasLayer/left
@@ -56,6 +56,8 @@ func _on_save_6_body_entered(body: Node2D) -> void:
 	if body.name == "ahsoka":
 		print("Resting at bonfire: ", bonfire_id)
 		$save6/Label.text = "Game Saved"
+		save_sound.play()
+		print("save sound active")
 		$save6/Label.show()  # Optional, in case it's hidden
 		SaveSystem.save_game(bonfire_id,$ahsoka.global_position,current)
 		await get_tree().create_timer(2.0).timeout  # Wait 2 seconds
@@ -69,6 +71,8 @@ func _on_save_7_body_entered(body: Node2D) -> void:
 	if body.name == "ahsoka":
 		print("Resting at bonfire: ", bonfire_id)
 		$save6/Label.text = "Game Saved"
+		save_sound.play()
+		print("save sound active")
 		$save6/Label.show()  # Optional, in case it's hidden
 		SaveSystem.save_game(bonfire_id,$ahsoka.global_position,current)
 		await get_tree().create_timer(2.0).timeout  # Wait 2 seconds

@@ -1,7 +1,10 @@
-[gd_scene load_steps=41 format=3 uid="uid://b5vvqfpjpoq2s"]
+[gd_scene load_steps=45 format=3 uid="uid://b5vvqfpjpoq2s"]
 
 [ext_resource type="Script" uid="uid://cfx305ooeva1g" path="res://scenes/levels/lvl_1.gd" id="1_gd3ko"]
 [ext_resource type="Texture2D" uid="uid://qcxvsw1r50q3" path="res://assets/Kauzz Forest Tiles/Backgrounds/Midleground.png" id="2_5sf1a"]
+[ext_resource type="Texture2D" uid="uid://bf8heo2r3iy0b" path="res://assets/Legacy-Fantasy - High Forest 2.0/Legacy-Fantasy - High Forest 2.3/Background/Background.png" id="2_hs5yg"]
+[ext_resource type="AudioStream" uid="uid://cn7ssu4ceshbp" path="res://assets/decidemp3-14575.mp3" id="2_lp3tw"]
+[ext_resource type="AudioStream" uid="uid://1huni58pnoqk" path="res://assets/bonus-points-190035.mp3" id="3_4nmen"]
 [ext_resource type="Texture2D" uid="uid://cwrh0hbnevq2k" path="res://assets/Legacy-Fantasy - High Forest 2.0/Legacy-Fantasy - High Forest 2.3/Assets/Tiles.png" id="3_qtpdg"]
 [ext_resource type="Texture2D" uid="uid://yrdypmlvabc2" path="res://assets/Kauzz Forest Tiles/Enviroment.png" id="4_gd3ko"]
 [ext_resource type="Texture2D" uid="uid://bt5ypb8t32ivc" path="res://assets/Legacy-Fantasy - High Forest 2.0/Legacy-Fantasy - High Forest 2.3/Assets/Buildings.png" id="5_j1457"]
@@ -13,7 +16,8 @@
 [ext_resource type="Script" uid="uid://cqrrdex4mbj3m" path="res://scenes/levels/area_2d.gd" id="10_xgh8i"]
 [ext_resource type="Texture2D" uid="uid://fcikjh2w7q83" path="res://control/transparentDark23.png" id="11_o40xn"]
 [ext_resource type="Script" uid="uid://bqucvqgaqfhrd" path="res://scenes/levels/label.gd" id="11_xejq1"]
-[ext_resource type="AudioStream" uid="uid://w6yp52tuvr70" path="res://assets/video-game-jump-soundeffect-37532.mp3" id="11_ymopi"]
+[ext_resource type="AudioStream" uid="uid://cqgf3rg1thc20" path="res://assets/funny-spring-jump-277576.mp3" id="11_ymopi"]
+[ext_resource type="AudioStream" uid="uid://b5ogf7hgmu61c" path="res://assets/land2-43790.mp3" id="12_hs5yg"]
 [ext_resource type="Script" uid="uid://3ennbfcwwax0" path="res://scenes/levels/killzone.gd" id="12_o40xn"]
 [ext_resource type="Script" uid="uid://b63be76vq5knc" path="res://scenes/levels/ddd.gd" id="12_qtpdg"]
 [ext_resource type="Texture2D" uid="uid://dyre3hfhvh5ut" path="res://control/transparentDark24.png" id="12_ymopi"]
@@ -1874,15 +1878,35 @@ size = Vector2(231.5, 112)
 [node name="lvl1" type="Node"]
 script = ExtResource("1_gd3ko")
 
+[node name="sfx_save" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_lp3tw")
+
+[node name="sfx_finish" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_4nmen")
+
+[node name="TextureRect2" type="TextureRect" parent="."]
+texture_filter = 1
+texture_repeat = 2
+anchors_preset = -1
+anchor_bottom = 0.963
+offset_left = -618.0
+offset_top = 11.0
+offset_right = 6340.0
+offset_bottom = 412.976
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_hs5yg")
+expand_mode = 3
+
 [node name="TextureRect" type="TextureRect" parent="."]
 texture_filter = 1
 texture_repeat = 2
 anchors_preset = -1
 anchor_bottom = 0.963
 offset_left = -319.0
-offset_top = -68.0
+offset_top = -103.0
 offset_right = 1256.0
-offset_bottom = 264.976
+offset_bottom = 229.976
 grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("2_5sf1a")
@@ -1893,10 +1917,10 @@ texture_filter = 1
 texture_repeat = 2
 anchors_preset = -1
 anchor_bottom = 0.963
-offset_left = 1260.0
-offset_top = -64.0
-offset_right = 2835.0
-offset_bottom = 268.976
+offset_left = 1263.0
+offset_top = -61.0
+offset_right = 2838.0
+offset_bottom = 271.976
 grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("2_5sf1a")
@@ -1960,7 +1984,7 @@ position = Vector2(25, -14)
 
 [node name="Camera2D" parent="ahsoka" index="1"]
 position = Vector2(41, -19)
-zoom = Vector2(3.5, 3.5)
+zoom = Vector2(3.2, 3.2)
 limit_smoothed = true
 position_smoothing_enabled = false
 
@@ -1984,6 +2008,9 @@ volume_db = 10.0
 [node name="sfx_jump" type="AudioStreamPlayer" parent="ahsoka"]
 stream = ExtResource("11_ymopi")
 volume_db = 5.0
+
+[node name="sfx_land" type="AudioStreamPlayer" parent="ahsoka"]
+stream = ExtResource("12_hs5yg")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="ahsoka"]
 

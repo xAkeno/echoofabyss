@@ -1,4 +1,4 @@
-[gd_scene load_steps=33 format=4 uid="uid://dojhxii4jikgb"]
+[gd_scene load_steps=39 format=4 uid="uid://dojhxii4jikgb"]
 
 [ext_resource type="Script" uid="uid://c42tgpsi7qotw" path="res://scenes/levels/lvl_4.gd" id="1_o5i11"]
 [ext_resource type="Texture2D" uid="uid://cwrh0hbnevq2k" path="res://assets/Legacy-Fantasy - High Forest 2.0/Legacy-Fantasy - High Forest 2.3/Assets/Tiles.png" id="2_o5i11"]
@@ -15,8 +15,13 @@
 [ext_resource type="Script" uid="uid://casio24mk4tts" path="res://scenes/levels/animatable_body_2d_2.gd" id="8_5pk66"]
 [ext_resource type="Texture2D" uid="uid://gg31f0qd16n8" path="res://control/transparentDark47.png" id="9_5i63c"]
 [ext_resource type="PackedScene" uid="uid://042iqgdh05v" path="res://scenes/ui/coin.tscn" id="9_giwed"]
+[ext_resource type="AudioStream" uid="uid://bow0m0hlksmm4" path="res://assets/sword-sound-2-36274.mp3" id="9_udpdd"]
 [ext_resource type="Texture2D" uid="uid://dyre3hfhvh5ut" path="res://control/transparentDark24.png" id="10_udpdd"]
+[ext_resource type="AudioStream" uid="uid://cqgf3rg1thc20" path="res://assets/funny-spring-jump-277576.mp3" id="10_wythk"]
+[ext_resource type="AudioStream" uid="uid://b5ogf7hgmu61c" path="res://assets/land2-43790.mp3" id="11_86qkc"]
 [ext_resource type="Script" uid="uid://cqrrdex4mbj3m" path="res://scenes/levels/area_2d.gd" id="12_ov6ck"]
+[ext_resource type="AudioStream" uid="uid://cn7ssu4ceshbp" path="res://assets/decidemp3-14575.mp3" id="21_86qkc"]
+[ext_resource type="AudioStream" uid="uid://1huni58pnoqk" path="res://assets/bonus-points-190035.mp3" id="22_jj1nn"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_a6fhx"]
 texture = ExtResource("3_5pk66")
@@ -1503,6 +1508,8 @@ sources/1 = SubResource("TileSetAtlasSource_6e4bg")
 sources/2 = SubResource("TileSetAtlasSource_xov2x")
 sources/3 = SubResource("TileSetAtlasSource_bd2jj")
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jj1nn"]
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_gkipi"]
 size = Vector2(25, 791)
 
@@ -1596,6 +1603,72 @@ position = Vector2(1570, 556)
 visible = false
 position = Vector2(6106, 543)
 
+[node name="ahsoka" parent="." instance=ExtResource("4_giwed")]
+position = Vector2(212, 584)
+
+[node name="CollisionShape2D" parent="ahsoka" index="0"]
+position = Vector2(25, -14)
+
+[node name="Camera2D" parent="ahsoka" index="1"]
+position = Vector2(41, -19)
+zoom = Vector2(3.2, 3.2)
+limit_smoothed = true
+position_smoothing_enabled = false
+
+[node name="Sprite2D" parent="ahsoka" index="2"]
+position = Vector2(26, -14)
+
+[node name="stateDebug" parent="ahsoka" index="6"]
+visible = false
+metadata/_edit_use_anchors_ = true
+
+[node name="sword" parent="ahsoka" index="7"]
+position = Vector2(28, -8)
+
+[node name="dmgZone" parent="ahsoka/sword" index="0"]
+position = Vector2(15, -7)
+
+[node name="sfx_attack" type="AudioStreamPlayer" parent="ahsoka"]
+stream = ExtResource("9_udpdd")
+volume_db = 10.0
+
+[node name="sfx_jump" type="AudioStreamPlayer" parent="ahsoka"]
+stream = ExtResource("10_wythk")
+volume_db = 5.0
+
+[node name="sfx_land" type="AudioStreamPlayer" parent="ahsoka"]
+stream = ExtResource("11_86qkc")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="ahsoka"]
+
+[node name="left" type="TouchScreenButton" parent="ahsoka/CanvasLayer"]
+position = Vector2(40, 543)
+texture_normal = ExtResource("8_3xlq6")
+action = "left_mobile"
+
+[node name="right" type="TouchScreenButton" parent="ahsoka/CanvasLayer"]
+position = Vector2(302, 535)
+texture_normal = ExtResource("7_8512a")
+action = "right_mobile"
+
+[node name="jump" type="TouchScreenButton" parent="ahsoka/CanvasLayer"]
+position = Vector2(888, 543)
+texture_normal = ExtResource("10_udpdd")
+action = "jump_mobile"
+
+[node name="attack" type="TouchScreenButton" parent="ahsoka/CanvasLayer"]
+position = Vector2(1007, 449)
+texture_normal = ExtResource("9_5i63c")
+action = "attack_mobile"
+
+[node name="DialogInteractionArea" type="Area2D" parent="ahsoka"]
+position = Vector2(27, -13)
+collision_layer = 2
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ahsoka/DialogInteractionArea"]
+shape = SubResource("RectangleShape2D_jj1nn")
+
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
@@ -1675,42 +1748,6 @@ offset_right = 22.0
 offset_bottom = -12.0
 metadata/_edit_use_anchors_ = true
 
-[node name="ahsoka" parent="." instance=ExtResource("4_giwed")]
-position = Vector2(87, 602)
-
-[node name="Camera2D" parent="ahsoka" index="1"]
-zoom = Vector2(3, 3)
-position_smoothing_enabled = false
-
-[node name="stateDebug" parent="ahsoka" index="6"]
-metadata/_edit_use_anchors_ = true
-
-[node name="CanvasLayer" type="CanvasLayer" parent="ahsoka"]
-
-[node name="right" type="TouchScreenButton" parent="ahsoka/CanvasLayer"]
-position = Vector2(210, 480)
-scale = Vector2(1.899, 2)
-texture_normal = ExtResource("7_8512a")
-action = "right_mobile"
-
-[node name="left" type="TouchScreenButton" parent="ahsoka/CanvasLayer"]
-position = Vector2(38, 451)
-scale = Vector2(1.909, 2)
-texture_normal = ExtResource("8_3xlq6")
-action = "left_mobile"
-
-[node name="attack" type="TouchScreenButton" parent="ahsoka/CanvasLayer"]
-position = Vector2(966, 380)
-scale = Vector2(1.893, 2)
-texture_normal = ExtResource("9_5i63c")
-action = "attack_mobile"
-
-[node name="jump" type="TouchScreenButton" parent="ahsoka/CanvasLayer"]
-position = Vector2(750, 480)
-scale = Vector2(1.966, 2)
-texture_normal = ExtResource("10_udpdd")
-action = "jump_mobile"
-
 [node name="coin" parent="." instance=ExtResource("9_giwed")]
 position = Vector2(492, 799)
 
@@ -1752,6 +1789,12 @@ position = Vector2(5658, 733)
 
 [node name="finishLine2" parent="." instance=ExtResource("6_2rmxl")]
 position = Vector2(6420, 555)
+
+[node name="sfx_save" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("21_86qkc")
+
+[node name="sfx_finish" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("22_jj1nn")
 
 [connection signal="body_entered" from="killzone" to="." method="_on_killzone_body_entered"]
 [connection signal="body_entered" from="save6" to="." method="_on_save_6_body_entered"]
