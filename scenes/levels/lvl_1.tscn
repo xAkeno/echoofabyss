@@ -1962,7 +1962,7 @@ layer_0/tile_data = PackedInt32Array(2949119, 131073, 1, 2490368, 131073, 0, 249
 
 [node name="finishLine" parent="." instance=ExtResource("7_0euni")]
 visible = false
-position = Vector2(4714, 402)
+position = Vector2(4703, 501)
 
 [node name="coin" parent="." instance=ExtResource("8_4p0am")]
 position = Vector2(736, 518)

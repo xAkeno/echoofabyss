@@ -1788,7 +1788,7 @@ position = Vector2(5615, 415)
 position = Vector2(5658, 733)
 
 [node name="finishLine2" parent="." instance=ExtResource("6_2rmxl")]
-position = Vector2(6420, 555)
+position = Vector2(6420, 558)
 
 [node name="sfx_save" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("21_86qkc")

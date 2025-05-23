@@ -1342,7 +1342,7 @@ tile_set = SubResource("TileSet_oxklq")
 position = Vector2(1570, 556)
 
 [node name="finishLine" parent="." instance=ExtResource("5_8v8yk")]
-position = Vector2(6107, 541)
+position = Vector2(6107, 544)
 
 [node name="ahsoka" parent="." instance=ExtResource("6_vvnko")]
 position = Vector2(212, 584)

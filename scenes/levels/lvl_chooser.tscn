@@ -1,0 +1,116 @@
+[gd_scene load_steps=3 format=3 uid="uid://c7ssk2bnuyy3r"]
+
+[ext_resource type="Texture2D" uid="uid://vhm428ii2onn" path="res://assets/Medieval_Castle_Asset_Pack/Background/layer_2.png" id="1_01y1t"]
+[ext_resource type="Script" uid="uid://bayciqacs6igo" path="res://scenes/script/lvl_chooser.gd" id="1_6pruk"]
+
+[node name="lvlChooser" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_6pruk")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_01y1t")
+
+[node name="Back" type="Button" parent="."]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.041
+anchor_top = 0.066
+anchor_right = 0.041
+anchor_bottom = 0.066
+offset_left = -17.232
+offset_top = -25.768
+offset_right = 37.768
+offset_bottom = 11.232
+text = "Back
+"
+
+[node name="lvl1" type="Button" parent="."]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.041
+anchor_top = 0.066
+anchor_right = 0.041
+anchor_bottom = 0.066
+offset_left = 70.768
+offset_top = 88.232
+offset_right = 293.768
+offset_bottom = 213.232
+text = "LVL 1"
+
+[node name="lvl2" type="Button" parent="."]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.041
+anchor_top = 0.066
+anchor_right = 0.041
+anchor_bottom = 0.066
+offset_left = 414.768
+offset_top = 91.232
+offset_right = 637.768
+offset_bottom = 216.232
+text = "LVL 2"
+
+[node name="lvl3" type="Button" parent="."]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.041
+anchor_top = 0.066
+anchor_right = 0.041
+anchor_bottom = 0.066
+offset_left = 766.768
+offset_top = 93.232
+offset_right = 989.768
+offset_bottom = 218.232
+text = "LVL 3
+"
+
+[node name="lvl4" type="Button" parent="."]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.041
+anchor_top = 0.066
+anchor_right = 0.041
+anchor_bottom = 0.066
+offset_left = 243.768
+offset_top = 270.232
+offset_right = 466.768
+offset_bottom = 395.232
+text = "LVL 4"
+
+[node name="lvl5" type="Button" parent="."]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.041
+anchor_top = 0.066
+anchor_right = 0.041
+anchor_bottom = 0.066
+offset_left = 593.768
+offset_top = 275.232
+offset_right = 816.768
+offset_bottom = 400.232
+text = "LVL 5"
+
+[connection signal="pressed" from="Back" to="." method="_on_back_pressed"]
+[connection signal="pressed" from="lvl1" to="." method="_on_lvl_1_pressed"]
+[connection signal="pressed" from="lvl2" to="." method="_on_lvl_2_pressed"]
+[connection signal="pressed" from="lvl3" to="." method="_on_lvl_3_pressed"]
+[connection signal="pressed" from="lvl4" to="." method="_on_lvl_4_pressed"]
+[connection signal="pressed" from="lvl5" to="." method="_on_lvl_5_pressed"]
