@@ -5,40 +5,58 @@ var has_double_jumped: bool = false
 @onready var sprite: Sprite2D = $Sprite2D
 @onready var animation_tree: AnimationTree = $AnimationTree
 @onready var state_machine: ashokaStateMachine = $ashokaStateMachine
-@onready var sword: Area2D = $sword
+@onready var sword: Area2D = $playerDamageZone
 var can_take_damage := false
 var is_inside_enemy_hitbox := false
+var is_allowed_to_take_damage : bool
+var health = 100
+var damage : int 
+var is_alive : bool
+var max_health = 100
+var min_health = 0
 
-var healthplayer = 100
-
-func _ready():
-		
-	Global.playerBody = self
-	Global.playerHitBox = $PlayerHitBox
+func _ready():	
+	GlobalScript.playerDamageZone = sword
+	GlobalScript.playerDamage = 20
+	GlobalScript.playerBody = self
 	animation_tree.active = true
+	is_allowed_to_take_damage = true
+	is_alive = true
+	
 
 func get_direction() -> float:
 	return Input.get_action_strength("right_mobile") - Input.get_action_strength("left_mobile")
 
 func check_hitbox():
-	if healthplayer <=0:
-		get_tree().reload_current_scene()
-	var hitbox_areas = $PlayerHitBox.get_overlapping_areas()
-	var damage: int
-	if hitbox_areas:
-		var hitbox = hitbox_areas.front()
-		print(hitbox_areas)
-		if hitbox.name == "kalabanDealDamageArea":
-			damage = Global.kalabanDamageAmount
-			take_damage(damage)
-			print("you got damaged",healthplayer)
+	var area_hitbox = $playerHitBox.get_overlapping_areas()
+	if area_hitbox:
+		var hitbox = area_hitbox.front()
+		if hitbox.get_parent() is Batenemy:
+			damage = GlobalScript.batDamage
+		elif hitbox.get_parent() is FrogEnemy:
+			damage = GlobalScript.frogDamage
+	
+	if is_allowed_to_take_damage:
+		take_damage(damage)
+		#print("current health is:", health)
 
 func take_damage(damage):
-	if damage !=0:
-		if healthplayer < 0:
-			healthplayer -= damage
-			print("Player health: ", healthplayer)
-		
+	if damage != 0: 
+		if health > 0:
+			health -= damage
+			$ahsokadamagable.damage(damage)
+			print(self,health)
+			if health <= 0:
+				health = 0
+				print("dead")
+				is_alive = false
+			take_damage_cooldown(1.5)
+			
+func take_damage_cooldown(wait_time):
+	is_allowed_to_take_damage = false
+	await get_tree().create_timer(wait_time).timeout
+	is_allowed_to_take_damage = true
+	damage = 0	
 
 func _physics_process(delta: float) -> void:
 	# Add the gravity.
@@ -47,12 +65,18 @@ func _physics_process(delta: float) -> void:
 
 	var direction := Input.get_vector("left_mobile", "right_mobile" , "ui_up", "ui_down")
 	
+	if Input.is_action_just_pressed("test"):
+		$ahsokadamagable.damage(5)
+		pass
+	
 	if direction and state_machine.check_if_can_move():
 		velocity.x = direction.x * speed
 	else:
 		velocity.x = move_toward(velocity.x, 0, speed)
 
 	move_and_slide()
+	if is_alive:
+		check_hitbox()
 	animation_handler(direction)	
 	#
 func animation_handler(direction):
@@ -85,8 +109,8 @@ func _on_trap_body_entered(body: Node2D) -> void:
 
 
 func _on_player_hit_box_area_entered(area: Area2D) -> void:
-	if area.name == "kalabanDealDamageArea":
+	if area.name == "":
 		is_inside_enemy_hitbox = true
 		await get_tree().create_timer(0.5).timeout
-		if is_inside_enemy_hitbox:  # Still inside after 0.5s
-			check_hitbox()
+		#$ahsokadamagable.damage(50)
+		#check_hitbox()

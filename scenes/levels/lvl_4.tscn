@@ -1620,14 +1620,7 @@ position_smoothing_enabled = false
 position = Vector2(26, -14)
 
 [node name="stateDebug" parent="ahsoka" index="6"]
-visible = false
 metadata/_edit_use_anchors_ = true
-
-[node name="sword" parent="ahsoka" index="7"]
-position = Vector2(28, -8)
-
-[node name="dmgZone" parent="ahsoka/sword" index="0"]
-position = Vector2(15, -7)
 
 [node name="sfx_attack" type="AudioStreamPlayer" parent="ahsoka"]
 stream = ExtResource("9_udpdd")
@@ -1650,6 +1643,7 @@ offset_top = 12.0
 offset_right = 68.0
 offset_bottom = 43.0
 text = "Menu"
+metadata/_edit_use_anchors_ = true
 
 [node name="left" type="TouchScreenButton" parent="ahsoka/CanvasLayer"]
 position = Vector2(40, 543)
@@ -1678,6 +1672,7 @@ offset_top = 14.0
 offset_right = 1134.0
 offset_bottom = 37.0
 text = "Coin - 0"
+metadata/_edit_use_anchors_ = true
 
 [node name="DialogInteractionArea" type="Area2D" parent="ahsoka"]
 position = Vector2(27, -13)

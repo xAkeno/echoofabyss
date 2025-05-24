@@ -2664,7 +2664,6 @@ texture = ExtResource("4_gd3ko")
 sources/0 = SubResource("TileSetAtlasSource_pd24p")
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_xgh8i"]
-size = Vector2(16, 20)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_w6uo3"]
 size = Vector2(25, 791)
@@ -2721,9 +2720,8 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0euni"]
 size = Vector2(231.5, 112)
 
-[node name="lvl1" type="Node2D"]
+[node name="lvl1" type="Node"]
 script = ExtResource("1_gd3ko")
-frog_scene = ExtResource("20_myeqb")
 
 [node name="sfx_save" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("2_lp3tw")
@@ -2736,10 +2734,10 @@ texture_filter = 1
 texture_repeat = 2
 anchors_preset = -1
 anchor_bottom = 0.963
-offset_left = -635.0
-offset_top = 411.0
-offset_right = 6323.0
-offset_bottom = 812.976
+offset_left = -618.0
+offset_top = 11.0
+offset_right = 6340.0
+offset_bottom = 412.976
 grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("2_hs5yg")
@@ -2750,10 +2748,10 @@ texture_filter = 1
 texture_repeat = 2
 anchors_preset = -1
 anchor_bottom = 0.963
-offset_left = -326.0
-offset_top = 366.0
-offset_right = 1249.0
-offset_bottom = 698.976
+offset_left = -319.0
+offset_top = -103.0
+offset_right = 1256.0
+offset_bottom = 229.976
 grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("2_5sf1a")
@@ -2764,10 +2762,10 @@ texture_filter = 1
 texture_repeat = 2
 anchors_preset = -1
 anchor_bottom = 0.963
-offset_left = 1246.0
-offset_top = 315.0
-offset_right = 2821.0
-offset_bottom = 647.976
+offset_left = 1263.0
+offset_top = -61.0
+offset_right = 2838.0
+offset_bottom = 271.976
 grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("2_5sf1a")
@@ -2778,10 +2776,10 @@ texture_filter = 1
 texture_repeat = 2
 anchors_preset = -1
 anchor_bottom = 0.963
-offset_left = 2780.0
-offset_top = 291.0
-offset_right = 4355.0
-offset_bottom = 623.976
+offset_left = 2847.0
+offset_top = -64.0
+offset_right = 4422.0
+offset_bottom = 268.976
 grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("2_5sf1a")
@@ -2792,10 +2790,10 @@ texture_filter = 1
 texture_repeat = 2
 anchors_preset = -1
 anchor_bottom = 0.963
-offset_left = 4347.0
-offset_top = 296.0
-offset_right = 5922.0
-offset_bottom = 628.976
+offset_left = 4430.0
+offset_top = -64.0
+offset_right = 6005.0
+offset_bottom = 268.976
 grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("2_5sf1a")
@@ -2850,23 +2848,14 @@ position = Vector2(26, -14)
 [node name="stateDebug" parent="ahsoka" index="6"]
 metadata/_edit_use_anchors_ = true
 
-[node name="playerDamageZone" parent="ahsoka" index="7"]
-position = Vector2(25, -8)
+[node name="sword" parent="ahsoka" index="7"]
+position = Vector2(28, -8)
 
-[node name="dmgZone" parent="ahsoka/playerDamageZone" index="0"]
-position = Vector2(17, -4)
+[node name="dmgZone" parent="ahsoka/sword" index="0"]
+position = Vector2(15, -7)
 
-[node name="playerHitBox" parent="ahsoka" index="10"]
-position = Vector2(1, 1)
-
-[node name="CollisionShape2D" parent="ahsoka/playerHitBox" index="0"]
-position = Vector2(25, -13)
-
-[node name="healthbar" parent="ahsoka" index="11"]
-offset_left = 11.0
-offset_top = -34.0
-offset_right = 44.0
-offset_bottom = -31.0
+[node name="CollisionShape2D" parent="ahsoka/DealDamageZone" index="0"]
+position = Vector2(26, -14)
 
 [node name="sfx_attack" type="AudioStreamPlayer" parent="ahsoka"]
 stream = ExtResource("14_xejq1")
@@ -2889,7 +2878,6 @@ offset_top = 12.0
 offset_right = 68.0
 offset_bottom = 43.0
 text = "Menu"
-metadata/_edit_use_anchors_ = true
 
 [node name="left" type="TouchScreenButton" parent="ahsoka/CanvasLayer"]
 position = Vector2(40, 543)
@@ -2918,7 +2906,6 @@ offset_top = 14.0
 offset_right = 1134.0
 offset_bottom = 37.0
 text = "Coin - 0"
-metadata/_edit_use_anchors_ = true
 
 [node name="DialogInteractionArea" type="Area2D" parent="ahsoka"]
 position = Vector2(27, -13)
@@ -2926,8 +2913,11 @@ collision_layer = 2
 collision_mask = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ahsoka/DialogInteractionArea"]
-position = Vector2(-2, 0)
 shape = SubResource("RectangleShape2D_xgh8i")
+
+[node name="toxicFrog" parent="." instance=ExtResource("20_myeqb")]
+position = Vector2(163, 583)
+script = null
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
 

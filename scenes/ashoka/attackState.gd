@@ -5,8 +5,9 @@ extends State
 @export var return_state: State 
 @onready var timer: Timer = $Timer
 @export var attack_2_node : String = "attack2"
-@onready var sword: Area2D = $"../../sword"
+@onready var sword: Area2D = $"../../playerDamageZone"
 @onready var slash: AudioStreamPlayer = get_node("../../sfx_attack")
+var current_damage_dealt : int
 
 func state_input(event: InputEvent):
 
@@ -14,6 +15,7 @@ func state_input(event: InputEvent):
 		if slash:
 			slash.pitch_scale = randf_range(0.9, 1.1)
 			print("slashing double")
+			GlobalScript.playerDamage = current_damage_dealt
 			slash.play()
 		else:
 			print("⚠️ slash is null – check AudioStreamPlayer path")

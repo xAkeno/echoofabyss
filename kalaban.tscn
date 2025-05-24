@@ -491,13 +491,13 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3drfg"]
-size = Vector2(41, 35)
+size = Vector2(41, 39)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_pij0p"]
-size = Vector2(49, 38)
+size = Vector2(39, 39)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_jaynr"]
-size = Vector2(111.75, 37)
+size = Vector2(74.5, 39)
 
 [node name="kalaban" type="CharacterBody2D"]
 script = ExtResource("1_ac1mj")
@@ -510,25 +510,23 @@ frame = 7
 frame_progress = 1.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(-0.5, 12.5)
+position = Vector2(-0.5, 7.5)
 shape = SubResource("RectangleShape2D_3drfg")
 
 [node name="DirectionTimer" type="Timer" parent="."]
 autostart = true
 
-[node name="kalabanbox" type="Area2D" parent="."]
+[node name="KalabanHitBox" type="Area2D" parent="."]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="kalabanbox"]
-position = Vector2(-1, 12)
+[node name="CollisionShape2D" type="CollisionShape2D" parent="KalabanHitBox"]
+position = Vector2(-0.5, 7.5)
 shape = SubResource("RectangleShape2D_pij0p")
 
-[node name="kalabanDealDamageArea" type="Area2D" parent="."]
+[node name="KalabanDealDamageArea" type="Area2D" parent="."]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="kalabanDealDamageArea"]
-position = Vector2(2.125, 12)
+[node name="CollisionShape2D" type="CollisionShape2D" parent="KalabanDealDamageArea"]
+position = Vector2(-1, 8)
 shape = SubResource("RectangleShape2D_jaynr")
 
 [connection signal="timeout" from="DirectionTimer" to="." method="_on_direction_timer_timeout"]
-[connection signal="area_entered" from="kalabanbox" to="." method="_on_kalabanbox_area_entered"]
-[connection signal="area_entered" from="kalabanDealDamageArea" to="." method="_on_kalaban_deal_damage_area_area_entered"]
-[connection signal="area_exited" from="kalabanDealDamageArea" to="." method="_on_kalaban_deal_damage_area_area_exited"]
+[connection signal="area_entered" from="KalabanHitBox" to="." method="_on_kalaban_hit_box_area_entered"]

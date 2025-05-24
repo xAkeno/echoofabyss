@@ -13,7 +13,13 @@ var attack_count = 0
 var attack_timer = 0.0
 const DOUBLE_ATTACK_MAX_TIME = 0.4
 @onready var save_sound: AudioStreamPlayer = $sfx_save
+@export var frog_scene : PackedScene
+
 func _ready():
+	
+	var frog1 = frog_scene.instantiate()
+	add_child(frog1)
+	
 	var left = $ahsoka/CanvasLayer/left
 	var right = $ahsoka/CanvasLayer/right
 	var jump = $ahsoka/CanvasLayer/jump

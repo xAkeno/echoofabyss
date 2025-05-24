@@ -15,7 +15,7 @@ func _ready() -> void:
 	# Calculate dynamic button size based on screen width (e.g., 15% of width)
 	var button_size = Vector2(screen_size.x * 0.15, screen_size.x * 0.15)
 
-	# Scale and Position LEFT
+	## Scale and Position LEFT
 	left.scale = button_size / left.texture_normal.get_size()
 	left.position = Vector2(margin, screen_size.y - button_size.y - margin)
 
