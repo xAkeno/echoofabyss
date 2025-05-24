@@ -1,5 +1,5 @@
 extends Node
-
+@export var bonfire_id: String
 @onready var score: Label = %score
 var points = 0
 

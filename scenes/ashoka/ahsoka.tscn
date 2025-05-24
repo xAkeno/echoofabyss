@@ -1,4 +1,4 @@
-[gd_scene load_steps=47 format=3 uid="uid://cray0mrkgeb7y"]
+[gd_scene load_steps=48 format=3 uid="uid://cray0mrkgeb7y"]
 
 [ext_resource type="Script" uid="uid://bq4sec1s862uv" path="res://scenes/ashoka/ahsoka.gd" id="1_lsfay"]
 [ext_resource type="Texture2D" uid="uid://b6j3yytp5eg76" path="res://assets/Legacy-Fantasy - High Forest 2.0/Legacy-Fantasy - High Forest 2.3/Character/Idle/Idle-Sheet.png" id="1_ms4mj"]
@@ -15,6 +15,9 @@
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_dd0ug"]
 radius = 8.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_sawyn"]
+size = Vector2(16, 30)
 
 [sub_resource type="Animation" id="Animation_6w15l"]
 length = 0.001
@@ -439,7 +442,7 @@ states/jump_start/position = Vector2(405, -0.670727)
 states/move/node = SubResource("AnimationNodeBlendSpace1D_5n61d")
 states/move/position = Vector2(405, 132)
 transitions = ["Start", "move", SubResource("AnimationNodeStateMachineTransition_qp5vw"), "move", "jump_start", SubResource("AnimationNodeStateMachineTransition_g43cr"), "jump_start", "jump_end", SubResource("AnimationNodeStateMachineTransition_bg2g1"), "jump_end", "move", SubResource("AnimationNodeStateMachineTransition_xtgxy"), "jump_start", "jump_double", SubResource("AnimationNodeStateMachineTransition_uj38x"), "jump_double", "jump_end", SubResource("AnimationNodeStateMachineTransition_pxb2v"), "move", "attack_1", SubResource("AnimationNodeStateMachineTransition_sawyn"), "attack_1", "attack_2", SubResource("AnimationNodeStateMachineTransition_oif8q"), "attack_2", "move", SubResource("AnimationNodeStateMachineTransition_pkevb"), "attack_1", "move", SubResource("AnimationNodeStateMachineTransition_mpqhx")]
-graph_offset = Vector2(0, 48.4777)
+graph_offset = Vector2(-14, 70.4777)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_mpqhx"]
 size = Vector2(13, 31.5)
@@ -451,6 +454,12 @@ script = ExtResource("1_lsfay")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(-3, 5)
 shape = SubResource("CapsuleShape2D_dd0ug")
+
+[node name="PlayerHitBox" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerHitBox"]
+position = Vector2(26, -13)
+shape = SubResource("RectangleShape2D_sawyn")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(0, -3)
@@ -533,6 +542,7 @@ position = Vector2(15, 4)
 shape = SubResource("RectangleShape2D_mpqhx")
 disabled = true
 
+[connection signal="area_entered" from="PlayerHitBox" to="." method="_on_player_hit_box_area_entered"]
 [connection signal="animation_finished" from="AnimationTree" to="ashokaStateMachine/landing" method="_on_animation_tree_animation_finished"]
 [connection signal="animation_finished" from="AnimationTree" to="ashokaStateMachine/attack" method="_on_animation_tree_animation_finished"]
 [connection signal="body_entered" from="sword" to="sword" method="_on_body_entered"]

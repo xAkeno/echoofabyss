@@ -4,17 +4,19 @@ extends Node
 var save_data = {}
 
 # SaveSystem.gd
-static func save_game(bonfire_id: String, position: Vector2, scene_path: String, coins: int):
+static func save_game(bonfire_id: String, position: Vector2, current: String, coins: int):
 	var save_data = {
 		"bonfire_id": bonfire_id,
 		"position": position,
-		"scene": scene_path,
+		"scene": current,
 		"coins": coins
 	}
 	var file = FileAccess.open("user://savegame.save", FileAccess.WRITE)
 	file.store_var(save_data)
 	file.close()
 
+
+# SaveSystem.gd
 static func load_game():
 	if not FileAccess.file_exists("user://savegame.save"):
 		return null
@@ -22,7 +24,6 @@ static func load_game():
 	var data = file.get_var()
 	file.close()
 	return data
-
 	
 static func clear_save():
 	var path = "user://savegame.save"

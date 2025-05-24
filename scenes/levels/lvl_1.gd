@@ -44,6 +44,7 @@ func _ready():
 	##
 	var current_scene = get_tree().current_scene.scene_file_path
 	var saved_data = SaveSystem.load_game()
+	print(saved_data, "<===")
 	if saved_data != null:
 		if saved_data.has("position"):
 			var pos = saved_data["position"]
@@ -54,7 +55,9 @@ func _ready():
 		else:
 			print("No position key in saved data")
 	else:
-		print("No saved data found")
+		print(saved_data, "---")
+		$ahsoka.global_position = Vector2(212.0, 584.0)
+
 
 func _process(delta):
 	match step:

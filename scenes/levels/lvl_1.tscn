@@ -12,7 +12,6 @@
 [ext_resource type="PackedScene" uid="uid://cray0mrkgeb7y" path="res://scenes/ashoka/ahsoka.tscn" id="6_144l7"]
 [ext_resource type="PackedScene" uid="uid://kfab266g510t" path="res://scenes/ui/finish_line.tscn" id="7_0euni"]
 [ext_resource type="PackedScene" uid="uid://042iqgdh05v" path="res://scenes/ui/coin.tscn" id="8_4p0am"]
-[ext_resource type="PackedScene" uid="uid://bqwxpculs2qal" path="res://scenes/enemy/skeleton.tscn" id="9_eeeou"]
 [ext_resource type="Texture2D" uid="uid://dkcnjuntq6dm3" path="res://control/transparentDark22.png" id="10_xejq1"]
 [ext_resource type="Script" uid="uid://cqrrdex4mbj3m" path="res://scenes/levels/area_2d.gd" id="10_xgh8i"]
 [ext_resource type="Texture2D" uid="uid://fcikjh2w7q83" path="res://control/transparentDark23.png" id="11_o40xn"]
@@ -28,6 +27,7 @@
 [ext_resource type="AudioStream" uid="uid://bow0m0hlksmm4" path="res://assets/sword-sound-2-36274.mp3" id="14_xejq1"]
 [ext_resource type="Script" uid="uid://b7ma6gl1ef8pd" path="res://scenes/levels/fff.gd" id="15_j1457"]
 [ext_resource type="Script" uid="uid://b8pouyqarrv8s" path="res://scenes/levels/attackTutorial.gd" id="17_144l7"]
+[ext_resource type="PackedScene" uid="uid://uc3ylett5o78" path="res://kalaban.tscn" id="20_myeqb"]
 [ext_resource type="Script" uid="uid://cquvpip3cbshj" path="res://gamemanager.gd" id="29_myeqb"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_sw1tr"]
@@ -2812,7 +2812,6 @@ tile_set = SubResource("TileSet_myeqb")
 [node name="finishLine" parent="." instance=ExtResource("7_0euni")]
 visible = false
 position = Vector2(4703, 501)
-bonfire_id = ""
 
 [node name="coin" parent="." instance=ExtResource("8_4p0am")]
 position = Vector2(736, 518)
@@ -2830,10 +2829,6 @@ position = Vector2(2433, 498)
 position = Vector2(3548, 468)
 
 [node name="game_manager" type="Node" parent="."]
-
-[node name="skeleton" parent="." instance=ExtResource("9_eeeou")]
-visible = false
-position = Vector2(1973, 508)
 
 [node name="ahsoka" parent="." instance=ExtResource("6_144l7")]
 position = Vector2(212, 584)
@@ -2917,6 +2912,9 @@ collision_mask = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ahsoka/DialogInteractionArea"]
 shape = SubResource("RectangleShape2D_xgh8i")
+
+[node name="kalaban" parent="." instance=ExtResource("20_myeqb")]
+position = Vector2(167, 570)
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
 
@@ -3024,6 +3022,7 @@ sprite_frames = SubResource("SpriteFrames_xejq1")
 autoplay = "default"
 
 [node name="DialogPlayer" parent="." instance=ExtResource("14_j1457")]
+visible = false
 scene_text_file = "res://assets/dialog.json"
 
 [node name="Area2D" type="Area2D" parent="."]
