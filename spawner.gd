@@ -29,7 +29,8 @@ func _process(delta):
 			print("=============================All enemies defeated.=========================")
 			cleared_waves += 1
 			spawned_enemies.clear()  # clear just in case
-			if cleared_waves >= 3 and not wavefinish:
+			print(cleared_waves)
+			if cleared_waves >= 4 and not wavefinish:
 				wavefinish = true
 				GlobalScript.waveFinish = true
 				print("All waves cleared. wavefinish = true")
@@ -72,11 +73,9 @@ func _on_Timer_timeout() -> void:
 			call_deferred("spawn_multiple", enemy_gab, 0)
 			call_deferred("spawn_multiple", enemy_boto, 1)
 			print("All phases complete")
-			$Timer.stop()
 		_:
 			label.text = ""
 			print("the gate is open")
-			GlobalScript.waveFinish = true
 			$Timer.stop()
 
 func spawn_multiple(enemy_scene: PackedScene, count: int) -> void:

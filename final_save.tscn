@@ -1,14 +1,131 @@
-[gd_scene load_steps=3 format=3 uid="uid://bkfpivwscm6u6"]
+[gd_scene load_steps=16 format=3 uid="uid://bkfpivwscm6u6"]
 
 [ext_resource type="Script" uid="uid://dkuyxdm0cig1p" path="res://final_save.gd" id="1_hrhxn"]
+[ext_resource type="Texture2D" uid="uid://hdgo7tex0vyv" path="res://assets/PixelPlatformerSet1v.1.1/other_and_decorative.png" id="2_grsfu"]
+[ext_resource type="Texture2D" uid="uid://bffdqdtxwyo3t" path="res://assets/Warrior_SheetnoEffect.png" id="3_cvn7v"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cvn7v"]
+atlas = ExtResource("2_grsfu")
+region = Rect2(192, 16, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hwsa0"]
+atlas = ExtResource("2_grsfu")
+region = Rect2(192, 32, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_0yqqc"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cvn7v")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hwsa0")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_grsfu"]
-size = Vector2(36, 59)
+size = Vector2(13, 80)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_cvn7v"]
+size = Vector2(20, 34)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0yqqc"]
+atlas = ExtResource("3_cvn7v")
+region = Rect2(0, 0, 69, 44)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qwhbr"]
+atlas = ExtResource("3_cvn7v")
+region = Rect2(69, 0, 69, 44)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tw3uy"]
+atlas = ExtResource("3_cvn7v")
+region = Rect2(138, 0, 69, 44)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_47n30"]
+atlas = ExtResource("3_cvn7v")
+region = Rect2(207, 0, 69, 44)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rvneu"]
+atlas = ExtResource("3_cvn7v")
+region = Rect2(276, 0, 69, 44)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jt1te"]
+atlas = ExtResource("3_cvn7v")
+region = Rect2(345, 0, 69, 44)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_54o6n"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0yqqc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qwhbr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tw3uy")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_47n30")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rvneu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jt1te")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
 
 [node name="final_end" type="Area2D"]
 script = ExtResource("1_hrhxn")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="wall" type="StaticBody2D" parent="."]
+position = Vector2(1, -1)
+
+[node name="AnimatedSprite2D4" type="AnimatedSprite2D" parent="wall"]
+position = Vector2(1, -31)
+sprite_frames = SubResource("SpriteFrames_0yqqc")
+
+[node name="AnimatedSprite2D4" type="AnimatedSprite2D" parent="wall/AnimatedSprite2D4"]
+position = Vector2(0, -16)
+sprite_frames = SubResource("SpriteFrames_0yqqc")
+
+[node name="AnimatedSprite2D2" type="AnimatedSprite2D" parent="wall"]
+position = Vector2(1, 1)
+sprite_frames = SubResource("SpriteFrames_0yqqc")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="wall"]
+position = Vector2(1, 17)
+sprite_frames = SubResource("SpriteFrames_0yqqc")
+
+[node name="AnimatedSprite2D3" type="AnimatedSprite2D" parent="wall"]
+position = Vector2(1, -15)
+sprite_frames = SubResource("SpriteFrames_0yqqc")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="wall"]
+position = Vector2(0, -15)
 shape = SubResource("RectangleShape2D_grsfu")
+
+[node name="finish" type="CollisionShape2D" parent="."]
+position = Vector2(-21, 1)
+shape = SubResource("RectangleShape2D_cvn7v")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="finish"]
+sprite_frames = SubResource("SpriteFrames_54o6n")
+autoplay = "default"
+frame_progress = 0.488708
+
+[node name="Label" type="Label" parent="."]
+offset_left = -60.0
+offset_top = -17.0
+offset_right = 173.0
+offset_bottom = 6.0
+scale = Vector2(0.3, 0.3)
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]

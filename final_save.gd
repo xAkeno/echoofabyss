@@ -8,15 +8,20 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	pass
+	if GlobalScript.waveFinish:
+		print("wall is free now ")
+		$wall.visible = false
+		$wall/CollisionShape2D.disabled = true
 
 
 func _on_body_entered(body: Node2D) -> void:
 	if body.name == "ahsoka" and GlobalScript.waveFinish and $"../key".key1:
 		get_tree().change_scene_to_file("res://lvl_6.tscn")
 	elif body.name == "ahsoka" and GlobalScript.waveFinish:
-		print("Your finish the wave but have no key")
+		$Label.text = "We don’t have the key to get out of here!"
+		print("We don’t have the key to get out of here!")
 	elif body.name == "ahsoka" and !GlobalScript.waveFinish and $"../key".key1:
+		$Label.text = "You got a key but the wave is not yet finish"
 		print("Your got a key but the wave is not yet finish")
 	elif body.name == "ahsoka":
 		print("ahsoka just touch nothing more")
