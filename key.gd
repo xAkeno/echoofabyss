@@ -15,5 +15,6 @@ func _on_body_entered(body: Node2D) -> void:
 	if body.name == "ahsoka":
 		$AnimatedSprite2D.visible = false
 		print("key received")
+		$AudioStreamPlayer.play()
 		key1 = true
 	pass # Replace with function body.

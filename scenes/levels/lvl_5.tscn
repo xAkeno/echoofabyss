@@ -2122,7 +2122,6 @@ visible = false
 position = Vector2(135, 595)
 
 [node name="finishLine" parent="." instance=ExtResource("6_v2syt")]
-visible = false
 position = Vector2(6106, 543)
 
 [node name="ahsoka" parent="." instance=ExtResource("4_2v7c7")]

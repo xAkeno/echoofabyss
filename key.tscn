@@ -1,7 +1,8 @@
-[gd_scene load_steps=6 format=3 uid="uid://d0ewwfg272nlv"]
+[gd_scene load_steps=7 format=3 uid="uid://d0ewwfg272nlv"]
 
 [ext_resource type="Script" uid="uid://u8pvsck0b1o4" path="res://key.gd" id="1_p0yg6"]
 [ext_resource type="Texture2D" uid="uid://dwv61xyd2kvr6" path="res://assets/Dungeon Tile Set/Dungeon Tile Set.png" id="1_up4cr"]
+[ext_resource type="AudioStream" uid="uid://1huni58pnoqk" path="res://assets/bonus-points-190035.mp3" id="3_krfvd"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_p0yg6"]
 size = Vector2(20, 12)
@@ -30,5 +31,8 @@ shape = SubResource("RectangleShape2D_p0yg6")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_d8y70")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_krfvd")
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
