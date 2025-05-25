@@ -1,4 +1,4 @@
-[gd_scene load_steps=50 format=4 uid="uid://b5vvqfpjpoq2s"]
+[gd_scene load_steps=51 format=4 uid="uid://b5vvqfpjpoq2s"]
 
 [ext_resource type="Script" uid="uid://cfx305ooeva1g" path="res://scenes/levels/lvl_1.gd" id="1_gd3ko"]
 [ext_resource type="Texture2D" uid="uid://qcxvsw1r50q3" path="res://assets/Kauzz Forest Tiles/Backgrounds/Midleground.png" id="2_5sf1a"]
@@ -12,6 +12,7 @@
 [ext_resource type="PackedScene" uid="uid://cray0mrkgeb7y" path="res://scenes/ashoka/ahsoka.tscn" id="6_144l7"]
 [ext_resource type="PackedScene" uid="uid://kfab266g510t" path="res://scenes/ui/finish_line.tscn" id="7_0euni"]
 [ext_resource type="PackedScene" uid="uid://042iqgdh05v" path="res://scenes/ui/coin.tscn" id="8_4p0am"]
+[ext_resource type="PackedScene" uid="uid://b170fb7a373wx" path="res://potion.tscn" id="9_e2cgk"]
 [ext_resource type="PackedScene" uid="uid://c2f8a3fed1w58" path="res://scenes/enemy/boto.tscn" id="10_01joq"]
 [ext_resource type="Texture2D" uid="uid://dkcnjuntq6dm3" path="res://control/transparentDark22.png" id="10_xejq1"]
 [ext_resource type="Script" uid="uid://cqrrdex4mbj3m" path="res://scenes/levels/area_2d.gd" id="10_xgh8i"]
@@ -2671,6 +2672,7 @@ size = Vector2(16, 20)
 size = Vector2(25, 791)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_20eu8"]
+size = Vector2(41, 20)
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_7x113"]
 distance = -179.0
@@ -2801,6 +2803,10 @@ grow_vertical = 2
 texture = ExtResource("2_5sf1a")
 expand_mode = 3
 
+[node name="DialogPlayer" parent="." instance=ExtResource("14_j1457")]
+visible = false
+scene_text_file = "res://assets/dialog.json"
+
 [node name="TileMap" type="TileMap" parent="."]
 texture_filter = 1
 tile_set = SubResource("TileSet_ok8r0")
@@ -2811,8 +2817,14 @@ layer_0/tile_data = PackedInt32Array(2949119, 131073, 1, 2490368, 131073, 0, 249
 tile_map_data = PackedByteArray("AADAABwAAAAHABUAAADAAB0AAAAHABYAAADBABwAAAAIABUAAADBAB0AAAAIABYAAADKABwAAAAHABUAAADKAB0AAAAHABYAAADLABwAAAAIABUAAADLAB0AAAAIABYAAADZABwAAAAHABUAAADZAB0AAAAHABYAAADaABwAAAAIABUAAADaAB0AAAAIABYAAADDABwAAAAHABMAAADEABwAAAAIABMAAADNABwAAAAHABMAAADOABwAAAAIABMAAACyACAAAAAIAAQAAACkAB8AAAAIAAQAAADHACAAAAAIAAQAAACqAB0AAAAPAAAAAACtAB0AAAAPAAEAAAC6AB0AAAAPAAYAAAC4ABwAAAANAAUAAAC4AB0AAAANAAYAAAC5ABwAAAAOAAUAAAC5AB0AAAAOAAYAAAC6ABwAAAAPAAUAAAC7ABwAAAAQAAUAAAC7AB0AAAAQAAYAAADUABwAAAANAAUAAADUAB0AAAANAAYAAADVABwAAAAOAAUAAADVAB0AAAAOAAYAAADWABwAAAAPAAUAAADWAB0AAAAPAAYAAADXABwAAAAQAAUAAADXAB0AAAAQAAYAAADQAB0AAAANAAAAAAB3ABoAAAAWAA0AAAB3ABsAAAAWAA4AAAB3ABwAAAAWAA8AAAB3AB0AAAAWABAAAAB4ABkAAAAXAAwAAAB4ABoAAAAXAA0AAAB4ABsAAAAXAA4AAAB4ABwAAAAXAA8AAAB4AB0AAAAXABAAAAB4AB4AAAAXABEAAAB5ABkAAAAYAAwAAAB5ABoAAAAYAA0AAAB5ABsAAAAYAA4AAAB5ABwAAAAYAA8AAAB5AB0AAAAYABAAAAB5AB4AAAAYABEAAAB5AB8AAAAYABIAAAB5ACAAAAAYABMAAAB6ABgAAAAZAAsAAAB6ABkAAAAZAAwAAAB6ABoAAAAZAA0AAAB6ABsAAAAZAA4AAAB6ABwAAAAZAA8AAAB6AB0AAAAZABAAAAB6AB4AAAAZABEAAAB6AB8AAAAZABIAAAB6ACAAAAAZABMAAAB7ABgAAAAaAAsAAAB7ABkAAAAaAAwAAAB7ABoAAAAaAA0AAAB7ABsAAAAaAA4AAAB7ABwAAAAaAA8AAAB7AB0AAAAaABAAAAB7AB4AAAAaABEAAAB7AB8AAAAaABIAAAB7ACAAAAAaABMAAAB8ABgAAAAbAAsAAAB8ABkAAAAbAAwAAAB8ABoAAAAbAA0AAAB8ABsAAAAbAA4AAAB8ABwAAAAbAA8AAAB8AB0AAAAbABAAAAB8AB4AAAAbABEAAAB8AB8AAAAbABIAAAB9ABgAAAAcAAsAAAB9ABkAAAAcAAwAAAB9ABoAAAAcAA0AAAB9ABsAAAAcAA4AAAB9ABwAAAAcAA8AAAB9AB0AAAAcABAAAAB9AB4AAAAcABEAAAB+ABgAAAAdAAsAAAB+ABkAAAAdAAwAAAB+ABoAAAAdAA0AAAB+ABsAAAAdAA4AAAB+ABwAAAAdAA8AAAB+AB0AAAAdABAAAAB+AB4AAAAdABEAAAB+AB8AAAAdABIAAAB/ABgAAAAeAAsAAAB/ABkAAAAeAAwAAAB/ABoAAAAeAA0AAAB/ABsAAAAeAA4AAAB/ABwAAAAeAA8AAAB/AB0AAAAeABAAAAB/AB4AAAAeABEAAAB/AB8AAAAeABIAAACAABkAAAAfAAwAAACAABoAAAAfAA0AAACAABsAAAAfAA4AAACAABwAAAAfAA8AAACAAB0AAAAfABAAAACAAB4AAAAfABEAAACHAB4AAAARAAkAAAA=")
 tile_set = SubResource("TileSet_myeqb")
 
+[node name="potion" parent="." instance=ExtResource("9_e2cgk")]
+position = Vector2(4011, 552)
+
 [node name="toxicFrog" parent="." instance=ExtResource("20_myeqb")]
-position = Vector2(3054, 451)
+position = Vector2(3075, 468)
+
+[node name="toxicFrog2" parent="." instance=ExtResource("20_myeqb")]
+position = Vector2(2950, 463)
 
 [node name="boto" parent="." instance=ExtResource("10_01joq")]
 position = Vector2(468, 577)
@@ -2873,6 +2885,7 @@ offset_left = 11.0
 offset_top = -34.0
 offset_right = 44.0
 offset_bottom = -31.0
+metadata/_edit_use_anchors_ = true
 
 [node name="sfx_attack" type="AudioStreamPlayer" parent="ahsoka"]
 stream = ExtResource("14_xejq1")
@@ -2935,9 +2948,6 @@ collision_mask = 0
 position = Vector2(-2, 0)
 shape = SubResource("RectangleShape2D_xgh8i")
 
-[node name="DialogPlayer" parent="." instance=ExtResource("14_j1457")]
-scene_text_file = "res://assets/dialog.json"
-
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
@@ -2951,18 +2961,19 @@ position = Vector2(4771, 403)
 shape = SubResource("RectangleShape2D_w6uo3")
 
 [node name="InstructionLabel" type="Label" parent="."]
-offset_left = 329.0
-offset_top = 513.0
-offset_right = 549.0
-offset_bottom = 536.0
-text = "Press 'D'  to move to right"
+offset_left = 172.0
+offset_top = 548.0
+offset_right = 471.0
+offset_bottom = 571.0
+scale = Vector2(0.5, 0.5)
+text = "Tap the \"Right arrow\"  to move to right"
 
 [node name="othersideMain" type="Area2D" parent="."]
 position = Vector2(721, 549)
 script = ExtResource("10_xgh8i")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="othersideMain"]
-position = Vector2(28, -1)
+position = Vector2(16, 0)
 shape = SubResource("RectangleShape2D_20eu8")
 
 [node name="othersideMain2" type="Area2D" parent="."]
@@ -2970,14 +2981,15 @@ position = Vector2(872, 521)
 script = ExtResource("10_xgh8i")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="othersideMain2"]
-position = Vector2(23, -5)
+position = Vector2(14.5, -5)
 shape = SubResource("RectangleShape2D_20eu8")
 
 [node name="Label" type="Label" parent="."]
-offset_left = 760.0
-offset_top = 451.0
-offset_right = 973.0
-offset_bottom = 474.0
+offset_left = 776.0
+offset_top = 470.0
+offset_right = 989.0
+offset_bottom = 500.0
+scale = Vector2(0.5, 0.5)
 text = "Now Try finish this obstacle"
 script = ExtResource("11_xejq1")
 
@@ -3048,12 +3060,14 @@ position = Vector2(3807, 489)
 script = ExtResource("17_144l7")
 
 [node name="Label2" type="Label" parent="Area2D"]
-offset_right = 141.0
-offset_bottom = 23.0
-text = "Press \"F\" to attack"
+offset_left = -1108.0
+offset_top = -63.0
+offset_right = -793.0
+offset_bottom = -40.0
+text = "Tap the attack icon on the right to attack"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-position = Vector2(73.25, 13)
+position = Vector2(-965, -67)
 shape = SubResource("RectangleShape2D_0euni")
 
 [node name="gamemanager" type="Node" parent="."]

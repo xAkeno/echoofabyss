@@ -132,7 +132,7 @@ animations = [{
 "speed": 5.0
 }]
 
-[node name="Area2D" type="Area2D"]
+[node name="potion" type="Area2D"]
 script = ExtResource("1_8parx")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -142,7 +142,7 @@ shape = SubResource("RectangleShape2D_446dp")
 sprite_frames = SubResource("SpriteFrames_cwy1k")
 animation = &"potion"
 autoplay = "potion"
-frame_progress = 0.263565
+frame_progress = 0.496057
 
 [node name="sfx_heal" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("4_18ay0")

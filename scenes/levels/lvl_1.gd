@@ -75,15 +75,15 @@ func _process(delta):
 	match step:
 		0:
 			if Input.is_action_just_pressed("right_mobile"):  # You can define "move_right" as 'd'
-				label.text = "Press A to move left"
+				label.text = 'Tap the "Left arrow"  to move to right.'
 				step += 1
 		1:
 			if Input.is_action_just_pressed("left_mobile"):  # You can define "move_left" as 'a'
-				label.text = "Press Space to jump"
+				label.text = 'Tap the "Up arrow" to jump.'
 				step += 1
 		2:
 			if Input.is_action_just_pressed("jump_mobile"):  # You can define "jump" as 'space'
-				label.text = "Now try jumping on the other side"
+				label.text = "You're almost there! Head straight and complete the challenge."
 				step += 1
 
 
@@ -93,7 +93,7 @@ func _on_otherside_main_body_entered(body: Node2D) -> void:
 
 
 func _on_otherside_main_2_body_entered(body: Node2D) -> void:
-	label2.text = "Now Lets try double jumping just press double space."
+	label2.text = "Now Let's try double jumping just tap the" + '"Arrow up" twice.'
 	pass # Replace with function body.
 
 
