@@ -1,10 +1,11 @@
-[gd_scene load_steps=36 format=4 uid="uid://cvu5uojyf6fq7"]
+[gd_scene load_steps=38 format=4 uid="uid://cvu5uojyf6fq7"]
 
 [ext_resource type="Script" uid="uid://dpscemagffsxc" path="res://scenes/levels/lvl_2.gd" id="1_a3nhj"]
 [ext_resource type="Texture2D" uid="uid://bf8heo2r3iy0b" path="res://assets/Legacy-Fantasy - High Forest 2.0/Legacy-Fantasy - High Forest 2.3/Background/Background.png" id="1_xkmnu"]
 [ext_resource type="Texture2D" uid="uid://cwrh0hbnevq2k" path="res://assets/Legacy-Fantasy - High Forest 2.0/Legacy-Fantasy - High Forest 2.3/Assets/Tiles.png" id="2_pfhas"]
 [ext_resource type="Texture2D" uid="uid://dwv61xyd2kvr6" path="res://assets/Dungeon Tile Set/Dungeon Tile Set.png" id="3_pfhas"]
 [ext_resource type="PackedScene" uid="uid://kfab266g510t" path="res://scenes/ui/finish_line.tscn" id="5_8v8yk"]
+[ext_resource type="PackedScene" uid="uid://b170fb7a373wx" path="res://potion.tscn" id="6_tc2qg"]
 [ext_resource type="PackedScene" uid="uid://cray0mrkgeb7y" path="res://scenes/ashoka/ahsoka.tscn" id="6_vvnko"]
 [ext_resource type="Texture2D" uid="uid://dkcnjuntq6dm3" path="res://control/transparentDark22.png" id="7_yokvh"]
 [ext_resource type="AudioStream" uid="uid://bow0m0hlksmm4" path="res://assets/sword-sound-2-36274.mp3" id="8_d84b7"]
@@ -18,6 +19,7 @@
 [ext_resource type="PackedScene" uid="uid://c3vkpe48iqet0" path="res://pause_menu.tscn" id="11_ht08u"]
 [ext_resource type="PackedScene" uid="uid://c2f8a3fed1w58" path="res://scenes/enemy/boto.tscn" id="15_7xwvs"]
 [ext_resource type="PackedScene" uid="uid://ckhh8lcug1ykj" path="res://scenes/enemy/mina.tscn" id="16_gx1t5"]
+[ext_resource type="PackedScene" uid="uid://fn5ipcbajky1" path="res://scenes/enemy/gab.tscn" id="17_6d427"]
 [ext_resource type="AudioStream" uid="uid://cn7ssu4ceshbp" path="res://assets/decidemp3-14575.mp3" id="17_vfotp"]
 [ext_resource type="AudioStream" uid="uid://1huni58pnoqk" path="res://assets/bonus-points-190035.mp3" id="18_ht08u"]
 [ext_resource type="Script" uid="uid://cquvpip3cbshj" path="res://gamemanager.gd" id="20_01glb"]
@@ -1355,6 +1357,9 @@ tile_set = SubResource("TileSet_oxklq")
 [node name="finishLine" parent="." instance=ExtResource("5_8v8yk")]
 position = Vector2(6107, 544)
 
+[node name="Area2D" parent="." instance=ExtResource("6_tc2qg")]
+position = Vector2(37, 610)
+
 [node name="ahsoka" parent="." instance=ExtResource("6_vvnko")]
 position = Vector2(212, 584)
 
@@ -1465,6 +1470,9 @@ position = Vector2(1800, 371)
 
 [node name="mina" parent="." instance=ExtResource("16_gx1t5")]
 position = Vector2(1070, 509)
+
+[node name="gab" parent="." instance=ExtResource("17_6d427")]
+position = Vector2(630, 482)
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
 

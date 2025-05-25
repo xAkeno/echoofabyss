@@ -25,6 +25,7 @@ var damage_taken : int
 var damage_done : int
 
 var points_for_kill : int = 250
+var player_in_frog_damage_area: bool = false
 
 @onready var ray = $RayCast2D
 @onready var ray2 = $RayCast2D2
@@ -115,6 +116,7 @@ func taking_damage(damage):
 	if !dead:
 		health -= damage
 		is_taking_damage = true
+		$sfx_damage_enemy.play()
 		print("current health : ",health)
 		if health <= 0:
 			health = 0
@@ -130,7 +132,21 @@ func damage_cooldown(wait_time):
 
 func _on_frog_damage_zone_body_entered(body):
 	if body == GlobalScript.playerBody:
-		print("touch2")
-		is_attacking = true
+		player_in_frog_damage_area = true
+		if !is_attacking:
+			attack_repeat_loop()
 		GlobalScript.frogDamage = damage_to_deal
+		
+func _on_frog_damage_zone_body_exited(body: Node2D) -> void:
+	if body == GlobalScript.playerBody:
+		player_in_frog_damage_area = false
+	
+func attack_repeat_loop():
+	is_attacking = true
+	animatedsprite.play("attack")
+	await get_tree().create_timer(1).timeout
+	is_attacking = false
+	
+	if player_in_frog_damage_area:
+		attack_repeat_loop()
 		

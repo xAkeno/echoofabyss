@@ -1,4 +1,4 @@
-[gd_scene load_steps=58 format=3 uid="uid://c2f8a3fed1w58"]
+[gd_scene load_steps=59 format=3 uid="uid://c2f8a3fed1w58"]
 
 [ext_resource type="Script" uid="uid://c71adosy667uq" path="res://boto.gd" id="1_6yiw2"]
 [ext_resource type="Texture2D" uid="uid://c2ntlmb65hjte" path="res://assets/skeletonAsset/skeletonAsset/skeletonAttack-Sheet146x64.png" id="2_rhchu"]
@@ -7,6 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://65gsjqatpbi5" path="res://assets/skeletonAsset/skeletonAsset/skeletonHurt-Sheet64x64.png" id="4_mvml8"]
 [ext_resource type="Texture2D" uid="uid://cotunc3pimy4o" path="res://assets/skeletonAsset/skeletonAsset/skeletonIdle-Sheet64x64.png" id="5_ktint"]
 [ext_resource type="Texture2D" uid="uid://duyrbcwtwb1cy" path="res://assets/skeletonAsset/skeletonAsset/skeletonMove-Sheet64x64.png" id="6_rawjg"]
+[ext_resource type="AudioStream" uid="uid://bwlgjro5el8hh" path="res://assets/damage-40114.mp3" id="8_wek5k"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_42ibs"]
 atlas = ExtResource("2_rhchu")
@@ -411,6 +412,10 @@ collision_mask = 2
 target_position = Vector2(-200, 0)
 collision_mask = 2
 
+[node name="sfx_damage_enemy" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("8_wek5k")
+
 [connection signal="timeout" from="DirectionTimer" to="." method="_on_direction_timer_timeout"]
 [connection signal="area_entered" from="botoHitBox" to="." method="_on_boto_hit_box_area_entered"]
 [connection signal="body_entered" from="botoDamageZone" to="." method="_on_boto_damage_zone_body_entered"]
+[connection signal="body_exited" from="botoDamageZone" to="." method="_on_boto_damage_zone_body_exited"]

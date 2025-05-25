@@ -1,8 +1,9 @@
-[gd_scene load_steps=42 format=3 uid="uid://c2h1kgseqk6u5"]
+[gd_scene load_steps=43 format=3 uid="uid://c2h1kgseqk6u5"]
 
 [ext_resource type="Script" uid="uid://c5e4hgdt4kyim" path="res://scenes/toxic_frog.gd" id="1_ch0sj"]
 [ext_resource type="Texture2D" uid="uid://umrocd10lu1v" path="res://assets/ToxicFrog/BlueBrown/ToxicFrogBlueBrown_Sheet.png" id="1_h6121"]
 [ext_resource type="PackedScene" uid="uid://cn8bpbc7jd8wb" path="res://scenes/healthbar.tscn" id="3_5uri2"]
+[ext_resource type="AudioStream" uid="uid://bwlgjro5el8hh" path="res://assets/damage-40114.mp3" id="4_s3i8e"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_xqr8u"]
 atlas = ExtResource("1_h6121")
@@ -320,6 +321,10 @@ collision_mask = 2
 [node name="RayCast2D2" type="RayCast2D" parent="."]
 target_position = Vector2(-200, 0)
 
+[node name="sfx_damage_enemy" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_s3i8e")
+
 [connection signal="timeout" from="DirectionTimer" to="." method="_on_direction_timer_timeout"]
 [connection signal="area_entered" from="frogHitBox" to="." method="_on_frog_hit_box_area_entered"]
 [connection signal="body_entered" from="frogDamageZone" to="." method="_on_frog_damage_zone_body_entered"]
+[connection signal="body_exited" from="frogDamageZone" to="." method="_on_frog_damage_zone_body_exited"]

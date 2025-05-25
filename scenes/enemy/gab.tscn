@@ -1,10 +1,12 @@
-[gd_scene load_steps=38 format=3 uid="uid://fn5ipcbajky1"]
+[gd_scene load_steps=40 format=3 uid="uid://fn5ipcbajky1"]
 
+[ext_resource type="Script" uid="uid://dhb5lkfpm4qvo" path="res://scenes/enemy/gab.gd" id="1_7i4sq"]
 [ext_resource type="Texture2D" uid="uid://cjcn7ql8j4ggj" path="res://assets/with_outline/ATTACK 1.png" id="1_jcx2a"]
 [ext_resource type="Texture2D" uid="uid://dr5176ysp40a" path="res://assets/ToxicFrog/BlueBlue/ToxicFrogBlueBlue_Explosion.png" id="2_w30o4"]
 [ext_resource type="Texture2D" uid="uid://bhogecm7sb6dl" path="res://assets/with_outline/IDLE.png" id="3_7i4sq"]
 [ext_resource type="Texture2D" uid="uid://d0o8r4ow4orxe" path="res://assets/with_outline/RUN.png" id="4_bkam8"]
 [ext_resource type="PackedScene" uid="uid://cn8bpbc7jd8wb" path="res://scenes/healthbar.tscn" id="6_vgv3r"]
+[ext_resource type="AudioStream" uid="uid://bwlgjro5el8hh" path="res://assets/damage-40114.mp3" id="6_w30o4"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_t6h73"]
 atlas = ExtResource("1_jcx2a")
@@ -161,7 +163,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"death",
-"speed": 10.0
+"speed": 5.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -231,48 +233,50 @@ animations = [{
 }]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_bp4q1"]
-height = 45.0
+radius = 4.0
+height = 28.0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_u6gua"]
-size = Vector2(42, 48.5)
+size = Vector2(25.375, 29.0625)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_4o354"]
-size = Vector2(66, 48.5)
+size = Vector2(39, 29)
 
 [node name="gab" type="CharacterBody2D"]
+script = ExtResource("1_7i4sq")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-position = Vector2(14, -27)
+position = Vector2(4, -9)
 scale = Vector2(0.585938, 0.585938)
 sprite_frames = SubResource("SpriteFrames_ffepq")
 animation = &"death"
 autoplay = "idle"
-frame_progress = 0.271135
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(12, -14)
+position = Vector2(-1, 1)
 shape = SubResource("CapsuleShape2D_bp4q1")
 
 [node name="DirectionTimer" type="Timer" parent="."]
 autostart = true
 
-[node name="minaHitBox" type="Area2D" parent="."]
+[node name="gabHitBox" type="Area2D" parent="."]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="minaHitBox"]
-position = Vector2(12, -14)
+[node name="CollisionShape2D" type="CollisionShape2D" parent="gabHitBox"]
+position = Vector2(0, 1.53125)
 shape = SubResource("RectangleShape2D_u6gua")
 
-[node name="minaDamageZone" type="Area2D" parent="."]
+[node name="gabDamageZone" type="Area2D" parent="."]
+position = Vector2(0, -1)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="minaDamageZone"]
-position = Vector2(12, -14)
+[node name="CollisionShape2D" type="CollisionShape2D" parent="gabDamageZone"]
+position = Vector2(-2.5, 2.5)
 shape = SubResource("RectangleShape2D_4o354")
 
 [node name="healthbar" parent="." instance=ExtResource("6_vgv3r")]
-offset_left = -3.0
-offset_top = -46.0
-offset_right = 30.0
-offset_bottom = -43.0
+offset_left = -19.0
+offset_top = -21.0
+offset_right = 14.0
+offset_bottom = -18.0
 metadata/_edit_use_anchors_ = true
 
 [node name="RayCast2D" type="RayCast2D" parent="."]
@@ -280,5 +284,13 @@ target_position = Vector2(199.615, 0)
 collision_mask = 2
 
 [node name="RayCast2D2" type="RayCast2D" parent="."]
+position = Vector2(0, 1)
 target_position = Vector2(-200, 0)
 collision_mask = 2
+
+[node name="sfx_damage_enemy" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("6_w30o4")
+
+[connection signal="area_entered" from="gabHitBox" to="." method="_on_gab_hit_box_area_entered"]
+[connection signal="body_entered" from="gabDamageZone" to="." method="_on_gab_damage_zone_body_entered"]
+[connection signal="body_exited" from="gabDamageZone" to="." method="_on_gab_damage_zone_body_exited"]

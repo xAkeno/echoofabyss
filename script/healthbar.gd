@@ -19,3 +19,7 @@ func _process(delta: float) -> void:
 			self.visible = false
 	else:
 		self.visible = false
+
+
+func _on_mina_damage_zone_body_exited(body: Node2D) -> void:
+	pass # Replace with function body.

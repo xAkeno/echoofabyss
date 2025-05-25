@@ -1,13 +1,13 @@
 extends CharacterBody2D
-class_name botoEnemy
+class_name gabEnemy
 
-var max_health : int = 60
+var max_health : int = 100
 var min_health :int = 0
-var health : int =  60
+var health : int =  100
 
-var speed = 40
+var speed = 60
 @onready var animatedsprite = $AnimatedSprite2D
-var damage_to_deal : int = 5
+var damage_to_deal : int = 12
 var dir : Vector2
 var is_chasing : bool
 
@@ -25,7 +25,8 @@ var damage_taken : int
 var damage_done : int
 
 var points_for_kill : int = 250
-var player_in_boto_damage_area: bool = false
+var player_in_gab_damage_area: bool = false
+
 
 @export var boto_scene : PackedScene
 @onready var ray = $RayCast2D
@@ -44,8 +45,13 @@ func _process(delta):
 	if GlobalScript.playerAlive and (ray.is_colliding() or ray2.is_colliding()):
 		var collider = ray.get_collider()
 		var collider2 = ray2.get_collider()
+		if collider:
+			print("Ray 1 hit:", collider.name, "Type:", collider)
+		if collider2:
+			print("Ray 2 hit:", collider2.name, "Type:", collider2)
 			
 		if collider == GlobalScript.playerBody or collider2 == GlobalScript.playerBody:
+			print("player deteced boto enemy will come")
 			is_chasing = true
 	elif !GlobalScript.playerAlive:
 		is_chasing = false
@@ -76,9 +82,9 @@ func handle_animation():
 	if !dead and !is_attacking and !is_taking_damage:
 		animatedsprite.play("run")
 		if dir.x == 1:
-			animatedsprite.flip_h = true
-		elif dir.x == -1:
 			animatedsprite.flip_h = false
+		elif dir.x == -1:
+			animatedsprite.flip_h = true
 	elif is_taking_damage:
 		animatedsprite.play("hurt")
 		await get_tree().create_timer(0.4).timeout
@@ -109,6 +115,7 @@ func taking_damage(damage):
 		health -= damage
 		is_taking_damage = true
 		$sfx_damage_enemy.play()
+		print("current health : ",health)
 		if health <= 0:
 			health = 0
 			dead = true
@@ -120,23 +127,23 @@ func damage_cooldown(wait_time):
 	allowed_to_take_damage = true
 	is_taking_damage = false
 
-func _on_boto_hit_box_area_entered(area):
+func _on_gab_hit_box_area_entered(area):
 	#print("attack np")
 	if area == GlobalScript.playerDamageZone:
 		damage_taken = GlobalScript.playerDamage
 		if allowed_to_take_damage:
 			taking_damage(damage_taken)
 
-func _on_boto_damage_zone_body_entered(body):
+func _on_gab_damage_zone_body_entered(body):
 	if body == GlobalScript.playerBody:
-		player_in_boto_damage_area = true
+		player_in_gab_damage_area = true
 		if !is_attacking:
 			attack_repeat_loop()
-		GlobalScript.botoDamage = damage_to_deal
-		
-func _on_boto_damage_zone_body_exited(body: Node2D) -> void:
+		GlobalScript.gabDamage = damage_to_deal
+
+func _on_gab_damage_zone_body_exited(body: Node2D) -> void:
 	if body == GlobalScript.playerBody:
-		player_in_boto_damage_area = false
+		player_in_gab_damage_area = false
 	
 func attack_repeat_loop():
 	is_attacking = true
@@ -144,5 +151,5 @@ func attack_repeat_loop():
 	await get_tree().create_timer(1).timeout
 	is_attacking = false
 	
-	if player_in_boto_damage_area:
+	if player_in_gab_damage_area:
 		attack_repeat_loop()

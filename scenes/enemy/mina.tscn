@@ -1,4 +1,4 @@
-[gd_scene load_steps=47 format=3 uid="uid://ckhh8lcug1ykj"]
+[gd_scene load_steps=48 format=3 uid="uid://ckhh8lcug1ykj"]
 
 [ext_resource type="Script" uid="uid://bnwx0pma3cltg" path="res://mina.gd" id="1_22edw"]
 [ext_resource type="Texture2D" uid="uid://b1153s87gxd2d" path="res://assets/Minotaur_1/Attack.png" id="2_22edw"]
@@ -7,6 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://clhr85o7jcfsb" path="res://assets/Minotaur_1/Idle.png" id="5_yesyy"]
 [ext_resource type="Texture2D" uid="uid://dmntyh12crgr4" path="res://assets/Minotaur_1/Walk.png" id="6_8dfpm"]
 [ext_resource type="PackedScene" uid="uid://cn8bpbc7jd8wb" path="res://scenes/healthbar.tscn" id="7_raer1"]
+[ext_resource type="AudioStream" uid="uid://bwlgjro5el8hh" path="res://assets/damage-40114.mp3" id="8_vcga0"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_1ks40"]
 atlas = ExtResource("2_22edw")
@@ -333,6 +334,9 @@ collision_mask = 2
 [node name="RayCast2D2" type="RayCast2D" parent="."]
 target_position = Vector2(-200, 0)
 collision_mask = 2
+
+[node name="sfx_damage_enemy" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("8_vcga0")
 
 [connection signal="area_entered" from="minaHitBox" to="." method="_on_mina_hit_box_area_entered"]
 [connection signal="body_entered" from="minaDamageZone" to="." method="_on_mina_damage_zone_body_entered"]

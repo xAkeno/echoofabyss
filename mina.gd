@@ -114,6 +114,7 @@ func taking_damage(damage):
 	if !dead:
 		health -= damage
 		is_taking_damage = true
+		$sfx_damage_enemy.play()
 		print("current health : ",health)
 		if health <= 0:
 			health = 0

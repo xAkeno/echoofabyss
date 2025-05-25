@@ -38,11 +38,11 @@ func check_hitbox():
 			damage = GlobalScript.frogDamage
 		elif hitbox.get_parent() is botoEnemy:
 			await get_tree().create_timer(0.8).timeout
-			
 			# Re-check if the player is still overlapping with a botoEnemy
 			var recheck_hitbox = $playerHitBox.get_overlapping_areas()
 			for area in recheck_hitbox:
 				if area.get_parent() is botoEnemy:
+					print("damage by boto")
 					damage = GlobalScript.botoDamage
 					break
 		elif hitbox.get_parent() is minaEnemy:
@@ -53,13 +53,20 @@ func check_hitbox():
 				if area.get_parent() is minaEnemy:
 					damage = GlobalScript.minaDamage
 					break
+		elif hitbox.get_parent() is gabEnemy:
+			await get_tree().create_timer(0.8).timeout
+			# Re-check if the player is still overlapping with a botoEnemy
+			var recheck_hitbox = $playerHitBox.get_overlapping_areas()
+			for area in recheck_hitbox:
+				if area.get_parent() is gabEnemy:
+					damage = GlobalScript.gabDamage
+					break
 	
 	if is_allowed_to_take_damage:
 		take_damage(damage)
 		#print("current health is:", health)
 
 func take_damage(damage):
-	print(self,health)
 	if health < 0:
 		health = 0
 		print("dead")
@@ -134,3 +141,8 @@ func _on_player_hit_box_area_entered(area: Area2D) -> void:
 		await get_tree().create_timer(0.5).timeout
 		#$ahsokadamagable.damage(50)
 		#check_hitbox()
+
+func heal(amount: int):
+	health += amount
+	if health > max_health:
+		health = max_health
