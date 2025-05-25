@@ -325,6 +325,7 @@ offset_left = -3.0
 offset_top = -46.0
 offset_right = 30.0
 offset_bottom = -43.0
+max_value = 120.0
 metadata/_edit_use_anchors_ = true
 
 [node name="RayCast2D" type="RayCast2D" parent="."]

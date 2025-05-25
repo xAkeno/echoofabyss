@@ -27,6 +27,7 @@ var gabHitBox : Area2D
 var gabDamageZone :Area2D
 var gabDamage :int
 
+var waveFinish :bool
 
 var current_wave : int
 var moving_to_next_wave : bool

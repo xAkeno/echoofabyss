@@ -1,4 +1,4 @@
-[gd_scene load_steps=40 format=4 uid="uid://5cfjh5ivp2ns"]
+[gd_scene load_steps=39 format=4 uid="uid://5cfjh5ivp2ns"]
 
 [ext_resource type="Script" uid="uid://bos56kfttpla0" path="res://scenes/levels/lvl_3.gd" id="1_wt5s4"]
 [ext_resource type="Texture2D" uid="uid://bf8heo2r3iy0b" path="res://assets/Legacy-Fantasy - High Forest 2.0/Legacy-Fantasy - High Forest 2.3/Background/Background.png" id="1_ycf2m"]
@@ -7,7 +7,6 @@
 [ext_resource type="Texture2D" uid="uid://cwrh0hbnevq2k" path="res://assets/Legacy-Fantasy - High Forest 2.0/Legacy-Fantasy - High Forest 2.3/Assets/Tiles.png" id="3_wt5s4"]
 [ext_resource type="Texture2D" uid="uid://hdgo7tex0vyv" path="res://assets/PixelPlatformerSet1v.1.1/other_and_decorative.png" id="4_ft8ky"]
 [ext_resource type="PackedScene" uid="uid://cray0mrkgeb7y" path="res://scenes/ashoka/ahsoka.tscn" id="4_ufxc7"]
-[ext_resource type="PackedScene" uid="uid://bqwxpculs2qal" path="res://scenes/enemy/skeleton.tscn" id="5_6dgo0"]
 [ext_resource type="Texture2D" uid="uid://fcikjh2w7q83" path="res://control/transparentDark23.png" id="6_cb72w"]
 [ext_resource type="PackedScene" uid="uid://kfab266g510t" path="res://scenes/ui/finish_line.tscn" id="6_sh3yb"]
 [ext_resource type="Texture2D" uid="uid://dkcnjuntq6dm3" path="res://control/transparentDark22.png" id="7_dsvxe"]
@@ -2377,10 +2376,6 @@ grow_vertical = 2
 texture = ExtResource("1_ycf2m")
 expand_mode = 3
 
-[node name="skeleton3" parent="." instance=ExtResource("5_6dgo0")]
-visible = false
-position = Vector2(1827, 783)
-
 [node name="finishLine" parent="." instance=ExtResource("6_sh3yb")]
 visible = false
 position = Vector2(6106, 543)
@@ -2389,27 +2384,31 @@ position = Vector2(6106, 543)
 position = Vector2(212, 584)
 
 [node name="CollisionShape2D" parent="ahsoka" index="0"]
-position = Vector2(25, -14)
+position = Vector2(0, 0)
 
 [node name="Camera2D" parent="ahsoka" index="1"]
-position = Vector2(41, -19)
+position = Vector2(1, 0)
 zoom = Vector2(3.2, 3.2)
 limit_smoothed = true
 position_smoothing_enabled = false
 
 [node name="Sprite2D" parent="ahsoka" index="2"]
-position = Vector2(26, -14)
+position = Vector2(0, 0)
 
 [node name="stateDebug" parent="ahsoka" index="6"]
 metadata/_edit_use_anchors_ = true
 
 [node name="dmgZone" parent="ahsoka/playerDamageZone" index="0"]
-position = Vector2(25, -13)
+position = Vector2(0, 0)
 
 [node name="CollisionShape2D" parent="ahsoka/playerHitBox" index="0"]
-position = Vector2(27, -13)
+position = Vector2(0, 0)
 
 [node name="healthbar" parent="ahsoka" index="11"]
+offset_left = 10.0
+offset_top = -34.0
+offset_right = 43.0
+offset_bottom = -31.0
 metadata/_edit_use_anchors_ = true
 
 [node name="sfx_attack" type="AudioStreamPlayer" parent="ahsoka"]
@@ -2468,7 +2467,7 @@ collision_layer = 2
 collision_mask = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ahsoka/DialogInteractionArea"]
-position = Vector2(-1.5, 0)
+position = Vector2(-27, 13)
 shape = SubResource("RectangleShape2D_s36qt")
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]

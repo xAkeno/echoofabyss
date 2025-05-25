@@ -1,11 +1,11 @@
 extends CharacterBody2D
 class_name botoEnemy
 
-var max_health : int = 60
+var max_health : int = 80
 var min_health :int = 0
-var health : int =  60
+var health : int =  80
 
-var speed = 40
+var speed = 50
 @onready var animatedsprite = $AnimatedSprite2D
 var damage_to_deal : int = 5
 var dir : Vector2

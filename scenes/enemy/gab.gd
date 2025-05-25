@@ -1,9 +1,9 @@
 extends CharacterBody2D
 class_name gabEnemy
 
-var max_health : int = 100
+var max_health : int = 60
 var min_health :int = 0
-var health : int =  100
+var health : int =  60
 
 var speed = 60
 @onready var animatedsprite = $AnimatedSprite2D

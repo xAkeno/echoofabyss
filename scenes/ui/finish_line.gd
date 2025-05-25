@@ -7,6 +7,9 @@ extends Area2D
 
 func _on_body_entered(body: Node2D) -> void:
 	var key_node = get_node("../key")
+	if GlobalScript.waveFinish:
+		print("===============================FINISH==================================")
+		
 	if body.name == "ahsoka" and key_node.key1:
 		print("hello")
 		finish_sound.play()
