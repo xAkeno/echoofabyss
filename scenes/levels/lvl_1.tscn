@@ -2812,10 +2812,10 @@ tile_map_data = PackedByteArray("AADAABwAAAAHABUAAADAAB0AAAAHABYAAADBABwAAAAIABU
 tile_set = SubResource("TileSet_myeqb")
 
 [node name="toxicFrog" parent="." instance=ExtResource("20_myeqb")]
-position = Vector2(3720, 523)
+position = Vector2(3054, 451)
 
 [node name="boto" parent="." instance=ExtResource("10_01joq")]
-position = Vector2(121, 580)
+position = Vector2(468, 577)
 
 [node name="finishLine" parent="." instance=ExtResource("7_0euni")]
 visible = false
@@ -2860,7 +2860,7 @@ metadata/_edit_use_anchors_ = true
 position = Vector2(25, -8)
 
 [node name="dmgZone" parent="ahsoka/playerDamageZone" index="0"]
-position = Vector2(17, -4)
+position = Vector2(2, -4)
 
 [node name="playerHitBox" parent="ahsoka" index="10"]
 position = Vector2(1, 1)
@@ -2934,6 +2934,9 @@ collision_mask = 0
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ahsoka/DialogInteractionArea"]
 position = Vector2(-2, 0)
 shape = SubResource("RectangleShape2D_xgh8i")
+
+[node name="DialogPlayer" parent="." instance=ExtResource("14_j1457")]
+scene_text_file = "res://assets/dialog.json"
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
 
@@ -3039,10 +3042,6 @@ visible = false
 position = Vector2(1993, 506.5)
 sprite_frames = SubResource("SpriteFrames_xejq1")
 autoplay = "default"
-
-[node name="DialogPlayer" parent="." instance=ExtResource("14_j1457")]
-visible = false
-scene_text_file = "res://assets/dialog.json"
 
 [node name="Area2D" type="Area2D" parent="."]
 position = Vector2(3807, 489)

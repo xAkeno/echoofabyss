@@ -1,4 +1,4 @@
-[gd_scene load_steps=49 format=3 uid="uid://cray0mrkgeb7y"]
+[gd_scene load_steps=51 format=3 uid="uid://cray0mrkgeb7y"]
 
 [ext_resource type="Script" uid="uid://bq4sec1s862uv" path="res://scenes/ashoka/ahsoka.gd" id="1_lsfay"]
 [ext_resource type="Texture2D" uid="uid://b6j3yytp5eg76" path="res://assets/Legacy-Fantasy - High Forest 2.0/Legacy-Fantasy - High Forest 2.3/Character/Idle/Idle-Sheet.png" id="1_ms4mj"]
@@ -12,6 +12,7 @@
 [ext_resource type="Script" uid="uid://dsmyjg23fo6ww" path="res://scenes/ashoka/landingState.gd" id="11_mpqhx"]
 [ext_resource type="Script" uid="uid://ccxlev55fjkse" path="res://scenes/ashoka/state_debug.gd" id="12_sawyn"]
 [ext_resource type="Script" uid="uid://cp6frbgfcomy2" path="res://scenes/ashoka/ahsokadamagable.gd" id="13_uj38x"]
+[ext_resource type="AudioStream" uid="uid://cpmf6lwrip7dl" path="res://assets/hit-flesh-02-266309.mp3" id="14_pxb2v"]
 [ext_resource type="PackedScene" uid="uid://cn8bpbc7jd8wb" path="res://scenes/healthbar.tscn" id="18_bg2g1"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_dd0ug"]
@@ -342,11 +343,39 @@ tracks/2/keys = {
 "values": [0, 1, 2, 3, 4, 5, 6, 7]
 }
 
+[sub_resource type="Animation" id="Animation_ls5xx"]
+resource_name = "die"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:hframes")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(),
+"transitions": PackedFloat32Array(),
+"update": 1,
+"values": []
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:texture")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(),
+"transitions": PackedFloat32Array(),
+"update": 1,
+"values": []
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_4goq8"]
 _data = {
 &"RESET": SubResource("Animation_6w15l"),
 &"attack_1": SubResource("Animation_oif8q"),
 &"attack_2": SubResource("Animation_mpqhx"),
+&"die": SubResource("Animation_ls5xx"),
 &"idle": SubResource("Animation_5n61d"),
 &"jump_double": SubResource("Animation_uj38x"),
 &"jump_end": SubResource("Animation_pxb2v"),
@@ -442,13 +471,14 @@ transitions = ["Start", "move", SubResource("AnimationNodeStateMachineTransition
 graph_offset = Vector2(-14, 70.4777)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_mpqhx"]
-size = Vector2(15.5, 31.5)
+size = Vector2(51, 31.5)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_sawyn"]
-size = Vector2(16, 30)
+size = Vector2(13, 30)
 
 [node name="ahsoka" type="CharacterBody2D"]
 position = Vector2(20, 11)
+collision_layer = 3
 script = ExtResource("1_lsfay")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -530,7 +560,7 @@ state_machine = NodePath("../ashokaStateMachine")
 [node name="playerDamageZone" type="Area2D" parent="."]
 
 [node name="dmgZone" type="CollisionShape2D" parent="playerDamageZone"]
-position = Vector2(-3, 4)
+position = Vector2(0.5, 5)
 shape = SubResource("RectangleShape2D_mpqhx")
 disabled = true
 
@@ -548,7 +578,7 @@ text = "100 hp"
 [node name="playerHitBox" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="playerHitBox"]
-position = Vector2(-2, 5)
+position = Vector2(-2.5, 5)
 shape = SubResource("RectangleShape2D_sawyn")
 
 [node name="healthbar" parent="." instance=ExtResource("18_bg2g1")]
@@ -556,6 +586,9 @@ offset_left = -18.0
 offset_top = -16.0
 offset_right = 15.0
 offset_bottom = -13.0
+
+[node name="sfx_damage" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("14_pxb2v")
 
 [connection signal="animation_finished" from="AnimationTree" to="ashokaStateMachine/landing" method="_on_animation_tree_animation_finished"]
 [connection signal="animation_finished" from="AnimationTree" to="ashokaStateMachine/attack" method="_on_animation_tree_animation_finished"]

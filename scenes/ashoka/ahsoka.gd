@@ -45,21 +45,31 @@ func check_hitbox():
 				if area.get_parent() is botoEnemy:
 					damage = GlobalScript.botoDamage
 					break
+		elif hitbox.get_parent() is minaEnemy:
+			await get_tree().create_timer(0.8).timeout
+			# Re-check if the player is still overlapping with a botoEnemy
+			var recheck_hitbox = $playerHitBox.get_overlapping_areas()
+			for area in recheck_hitbox:
+				if area.get_parent() is minaEnemy:
+					damage = GlobalScript.minaDamage
+					break
 	
 	if is_allowed_to_take_damage:
 		take_damage(damage)
 		#print("current health is:", health)
 
 func take_damage(damage):
+	print(self,health)
+	if health < 0:
+		health = 0
+		print("dead")
+		get_tree().reload_current_scene()
+		is_alive = false
 	if damage != 0: 
 		if health > 0:
 			health -= damage
+			$sfx_damage.play()
 			$ahsokadamagable.damage(damage)
-			print(self,health)
-			if health <= 0:
-				health = 0
-				print("dead")
-				is_alive = false
 			take_damage_cooldown(1.5)
 			
 func take_damage_cooldown(wait_time):

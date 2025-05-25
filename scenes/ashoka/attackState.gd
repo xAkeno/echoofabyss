@@ -12,6 +12,7 @@ var current_damage_dealt : int
 func state_input(event: InputEvent):
 
 	if(event.is_action_pressed("attack_mobile")):
+		timer.start()
 		if slash:
 			slash.pitch_scale = randf_range(0.9, 1.1)
 			print("slashing double")
@@ -19,7 +20,6 @@ func state_input(event: InputEvent):
 			slash.play()
 		else:
 			print("⚠️ slash is null – check AudioStreamPlayer path")
-		timer.start()
 		
 	
 

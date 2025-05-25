@@ -19,6 +19,10 @@ var botoHitBox : Area2D
 var botoDamageZone :Area2D
 var botoDamage :int
 
+var minaHitBox : Area2D
+var minaDamageZone :Area2D
+var minaDamage :int
+
 
 var current_wave : int
 var moving_to_next_wave : bool

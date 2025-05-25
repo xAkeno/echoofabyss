@@ -1,13 +1,13 @@
 extends CharacterBody2D
-class_name FrogEnemy
+class_name minaEnemy
 
-var max_health : int = 30
+var max_health : int = 100
 var min_health :int = 0
-var health : int =  30
+var health : int =  100
 
 var speed = 40
 @onready var animatedsprite = $AnimatedSprite2D
-var damage_to_deal : int = 10
+var damage_to_deal : int = 15
 var dir : Vector2
 var is_chasing : bool
 
@@ -17,7 +17,7 @@ var dead : bool
 var is_attacking : bool
 var is_taking_damage : bool
 var allowed_to_take_damage : bool 
-var knockback : int = -150
+var knockback : int = -200
 const gravity : int = 900
 
 var is_roaming : bool
@@ -25,11 +25,12 @@ var damage_taken : int
 var damage_done : int
 
 var points_for_kill : int = 250
+var player_in_mina_damage_area: bool = false
 
+
+@export var boto_scene : PackedScene
 @onready var ray = $RayCast2D
 @onready var ray2 = $RayCast2D2
-
-@export var frog_scene : PackedScene
 
 func _ready():
 	dead = false
@@ -44,8 +45,13 @@ func _process(delta):
 	if GlobalScript.playerAlive and (ray.is_colliding() or ray2.is_colliding()):
 		var collider = ray.get_collider()
 		var collider2 = ray2.get_collider()
+		if collider:
+			print("Ray 1 hit:", collider.name, "Type:", collider)
+		if collider2:
+			print("Ray 2 hit:", collider2.name, "Type:", collider2)
+			
 		if collider == GlobalScript.playerBody or collider2 == GlobalScript.playerBody:
-			print("player detec")
+			print("player deteced boto enemy will come")
 			is_chasing = true
 	elif !GlobalScript.playerAlive:
 		is_chasing = false
@@ -103,13 +109,6 @@ func chose(array):
 	array.shuffle()
 	return array.front()
 
-
-func _on_frog_hit_box_area_entered(area):
-	#print("attack np")
-	if area == GlobalScript.playerDamageZone:
-		damage_taken = GlobalScript.playerDamage
-		if allowed_to_take_damage:
-			taking_damage(damage_taken)
 		
 func taking_damage(damage):
 	if !dead:
@@ -127,10 +126,29 @@ func damage_cooldown(wait_time):
 	allowed_to_take_damage = true
 	is_taking_damage = false
 
+func _on_mina_hit_box_area_entered(area):
+	#print("attack np")
+	if area == GlobalScript.playerDamageZone:
+		damage_taken = GlobalScript.playerDamage
+		if allowed_to_take_damage:
+			taking_damage(damage_taken)
 
-func _on_frog_damage_zone_body_entered(body):
+func _on_mina_damage_zone_body_entered(body):
 	if body == GlobalScript.playerBody:
-		print("touch2")
-		is_attacking = true
-		GlobalScript.frogDamage = damage_to_deal
-		
+		player_in_mina_damage_area = true
+		if !is_attacking:
+			attack_repeat_loop()
+		GlobalScript.minaDamage = damage_to_deal
+
+func _on_mina_damage_zone_body_exited(body: Node2D) -> void:
+	if body == GlobalScript.playerBody:
+		player_in_mina_damage_area = false
+	
+func attack_repeat_loop():
+	is_attacking = true
+	animatedsprite.play("attack")
+	await get_tree().create_timer(1).timeout
+	is_attacking = false
+	
+	if player_in_mina_damage_area:
+		attack_repeat_loop()
