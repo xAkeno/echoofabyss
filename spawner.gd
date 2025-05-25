@@ -42,7 +42,7 @@ func _on_area_2d_body_entered(body: Node) -> void:
 		print("Spawning started")
 
 		# Spawn initial gab enemies deferred (to avoid physics flush error)
-		call_deferred("spawn_multiple", enemy_gab, 1)
+		call_deferred("spawn_multiple", enemy_gab, 4)
 
 		# Start timer for next phase in 20 seconds
 		$Timer.wait_time = 20
@@ -54,7 +54,7 @@ func _on_Timer_timeout() -> void:
 		0:
 			print("Phase 0: Spawning boto")
 			label.text = "Phase 1: Spawning skeletons"
-			call_deferred("spawn_multiple", enemy_boto, 1)
+			call_deferred("spawn_multiple", enemy_boto, 3)
 			phase = 1
 			
 			$Timer.wait_time = 20
@@ -62,16 +62,16 @@ func _on_Timer_timeout() -> void:
 		1:
 			print("Phase 2: Elite minotaur")
 			label.text = "Phase 2: Elite minotaur!"
-			call_deferred("spawn_multiple", enemy_mina, 1)
+			call_deferred("spawn_multiple", enemy_mina, 3)
 			phase = 2
 			print("All phases complete")
 			$Timer.wait_time = 30
 		2:
 			print("Phase 3: Spawning nigga")
 			label.text = "Final phase: survive the onslaught!"
-			call_deferred("spawn_multiple", enemy_mina, 0)
-			call_deferred("spawn_multiple", enemy_gab, 0)
-			call_deferred("spawn_multiple", enemy_boto, 1)
+			call_deferred("spawn_multiple", enemy_mina, 2)
+			call_deferred("spawn_multiple", enemy_gab, 4)
+			call_deferred("spawn_multiple", enemy_boto, 3)
 			print("All phases complete")
 		_:
 			label.text = ""

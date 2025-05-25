@@ -119,7 +119,7 @@ shape = SubResource("RectangleShape2D_cvn7v")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="finish"]
 sprite_frames = SubResource("SpriteFrames_54o6n")
 autoplay = "default"
-frame_progress = 0.488708
+frame_progress = 0.181398
 
 [node name="Label" type="Label" parent="."]
 offset_left = -60.0
