@@ -142,7 +142,7 @@ shape = SubResource("RectangleShape2D_446dp")
 sprite_frames = SubResource("SpriteFrames_cwy1k")
 animation = &"potion"
 autoplay = "potion"
-frame_progress = 0.475024
+frame_progress = 0.743363
 
 [node name="sfx_heal" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("4_18ay0")

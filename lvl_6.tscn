@@ -1,0 +1,28 @@
+[gd_scene load_steps=2 format=3 uid="uid://cxq25sv6f3t0j"]
+
+[ext_resource type="Script" uid="uid://costq82j802bs" path="res://ending.gd" id="1_mhepx"]
+
+[node name="lvl_6" type="Node"]
+script = ExtResource("1_mhepx")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+offset_right = 1154.0
+offset_bottom = 649.0
+color = Color(0, 0, 0, 1)
+
+[node name="Label" type="Label" parent="."]
+offset_left = 248.0
+offset_top = 208.0
+offset_right = 3248.0
+offset_bottom = 485.0
+scale = Vector2(0.235, 0.235)
+theme_override_font_sizes/font_size = 100
+text = "After reuniting with his mother, they lived happily ever after...
+"
+
+[node name="return" type="Label" parent="."]
+offset_left = 451.0
+offset_top = 376.0
+offset_right = 704.0
+offset_bottom = 399.0
+text = "Tap anywhere to return to menu"

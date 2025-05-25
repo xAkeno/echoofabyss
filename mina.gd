@@ -24,10 +24,10 @@ var is_roaming : bool
 var damage_taken : int
 var damage_done : int
 
-var points_for_kill : int = 8
+var points_for_kill : int = randi_range(6, 10)
 var player_in_mina_damage_area: bool = false
 
-
+@onready var game_manager: Node = %gamemanager
 @export var boto_scene : PackedScene
 @onready var ray = $RayCast2D
 @onready var ray2 = $RayCast2D2
@@ -118,6 +118,10 @@ func taking_damage(damage):
 		print("current health : ",health)
 		if health <= 0:
 			health = 0
+			if is_instance_valid(game_manager):
+				game_manager.enemy_point(points_for_kill)
+			else:
+				print("Warning: game_manager is not valid.")
 			dead = true
 		damage_cooldown(1)
 

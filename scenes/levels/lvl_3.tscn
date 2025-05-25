@@ -2382,6 +2382,7 @@ position = Vector2(6106, 543)
 
 [node name="ahsoka" parent="." instance=ExtResource("4_ufxc7")]
 position = Vector2(212, 584)
+speed = null
 
 [node name="CollisionShape2D" parent="ahsoka" index="0"]
 position = Vector2(0, 0)

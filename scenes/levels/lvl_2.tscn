@@ -2491,6 +2491,7 @@ shape = SubResource("WorldBoundaryShape2D_vr6yd")
 
 [node name="ahsoka" parent="." instance=ExtResource("6_vvnko")]
 position = Vector2(212, 584)
+speed = null
 
 [node name="CollisionShape2D" parent="ahsoka" index="0"]
 position = Vector2(25, -14)

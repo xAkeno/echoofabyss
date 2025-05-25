@@ -24,13 +24,15 @@ var is_roaming : bool
 var damage_taken : int
 var damage_done : int
 
-var points_for_kill : int = 250
+var points_for_kill : int = 4
 var player_in_gab_damage_area: bool = false
 
 
 @export var boto_scene : PackedScene
 @onready var ray = $RayCast2D
 @onready var ray2 = $RayCast2D2
+
+@onready var game_manager: Node = %gamemanager
 
 func _ready():
 	dead = false
@@ -116,6 +118,10 @@ func taking_damage(damage):
 		if health <= 0:
 			health = 0
 			dead = true
+			if is_instance_valid(game_manager):
+				game_manager.enemy_point(points_for_kill)
+			else:
+				print("Warning: game_manager is not valid.")
 		damage_cooldown(1)
 
 func damage_cooldown(wait_time):
