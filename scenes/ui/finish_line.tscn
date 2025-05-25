@@ -7,10 +7,10 @@
 size = Vector2(30, 164.25)
 
 [node name="finishLine" type="Area2D"]
-visible = false
 script = ExtResource("1_ghrm7")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+visible = false
 texture_filter = 1
 position = Vector2(-1.5, 0)
 scale = Vector2(0.953125, 1)
@@ -19,5 +19,12 @@ texture = ExtResource("1_6tsjx")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(-1, -26.875)
 shape = SubResource("RectangleShape2D_yfpjd")
+
+[node name="Label" type="Label" parent="."]
+offset_left = -45.0
+offset_top = -37.0
+offset_right = 148.0
+offset_bottom = -14.0
+scale = Vector2(0.5, 0.5)
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]

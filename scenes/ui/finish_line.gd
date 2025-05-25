@@ -27,6 +27,8 @@ func _on_body_entered(body: Node2D) -> void:
 			current,
 			gm.points
 		)
+		key_node.key1 = false
 		get_tree().change_scene_to_file(path)
 	elif body.name == "ahsoka":
+		$Label.text = "Cannot open key needed"
 		print("there is not key")
