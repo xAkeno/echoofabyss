@@ -2,10 +2,12 @@ extends Area2D
 @onready var finish_sound: AudioStreamPlayer = get_node("../sfx_finish")
 @export var bonfire_id: String
 @export var spawn_point: Node2D  # optional, a child node or position
+
 #@export var target_level :PackedScene
 
 func _on_body_entered(body: Node2D) -> void:
-	if body.name == "ahsoka":
+	var key_node = get_node("../key")
+	if body.name == "ahsoka" and key_node.key1:
 		print("hello")
 		finish_sound.play()
 		print("finish sound active")
@@ -26,3 +28,5 @@ func _on_body_entered(body: Node2D) -> void:
 			gm.points
 		)
 		get_tree().change_scene_to_file(path)
+	elif body.name == "ahsoka":
+		print("there is not key")

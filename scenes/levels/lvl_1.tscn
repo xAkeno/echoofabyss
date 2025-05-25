@@ -2804,7 +2804,6 @@ texture = ExtResource("2_5sf1a")
 expand_mode = 3
 
 [node name="DialogPlayer" parent="." instance=ExtResource("14_j1457")]
-visible = false
 scene_text_file = "res://assets/dialog.json"
 
 [node name="TileMap" type="TileMap" parent="."]
@@ -2830,7 +2829,6 @@ position = Vector2(2950, 463)
 position = Vector2(468, 577)
 
 [node name="finishLine" parent="." instance=ExtResource("7_0euni")]
-visible = false
 position = Vector2(4703, 501)
 
 [node name="coin" parent="." instance=ExtResource("8_4p0am")]

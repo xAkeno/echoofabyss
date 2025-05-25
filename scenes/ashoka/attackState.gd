@@ -16,7 +16,7 @@ func state_input(event: InputEvent):
 		if slash:
 			slash.pitch_scale = randf_range(0.9, 1.1)
 			print("slashing double")
-			GlobalScript.playerDamage = current_damage_dealt
+			GlobalScript.playerDamage = 30
 			slash.play()
 		else:
 			print("⚠️ slash is null – check AudioStreamPlayer path")
@@ -31,6 +31,7 @@ func _on_animation_tree_animation_finished(anim_name: StringName) -> void:
 		if(timer.is_stopped()):
 			next_state = return_state
 			playback.travel(return_animation_node)
+			GlobalScript.playerDamage = 20
 			wait_time = 0.2
 		else:
 			playback.travel(attack_2_node)

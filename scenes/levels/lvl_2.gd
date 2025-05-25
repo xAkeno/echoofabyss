@@ -35,10 +35,9 @@ func _ready() -> void:
 	var saved_data = SaveSystem.load_game()  # removed (current_scene)
 
 	if saved_data != null and saved_data.scene == get_tree().current_scene.scene_file_path:
+		print("prev level coin ",saved_data["coins"])
 		if saved_data.has("position"):
 			$ahsoka.global_position = saved_data["position"]
-
-
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
@@ -77,4 +76,10 @@ func _on_save_2_body_entered(body: Node2D) -> void:
 		$save2/Label.text = "Game Saved"
 		save_sound.play()
 		$save2/Label.show()
+	pass # Replace with function body.
+
+
+func _on_trap_body_entered(body: Node2D) -> void:
+	if body.name == "ahsoka":
+		GlobalScript.playerBody.trap_damage(5)
 	pass # Replace with function body.

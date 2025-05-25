@@ -286,7 +286,7 @@ animations = [{
 height = 45.0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_vu1ae"]
-size = Vector2(42, 48.5)
+size = Vector2(38, 48.25)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_o8565"]
 size = Vector2(66, 48.5)
@@ -311,7 +311,7 @@ autostart = true
 [node name="minaHitBox" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="minaHitBox"]
-position = Vector2(12, -14)
+position = Vector2(12, -13.875)
 shape = SubResource("RectangleShape2D_vu1ae")
 
 [node name="minaDamageZone" type="Area2D" parent="."]

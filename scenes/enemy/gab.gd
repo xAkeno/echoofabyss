@@ -45,13 +45,9 @@ func _process(delta):
 	if GlobalScript.playerAlive and (ray.is_colliding() or ray2.is_colliding()):
 		var collider = ray.get_collider()
 		var collider2 = ray2.get_collider()
-		if collider:
-			print("Ray 1 hit:", collider.name, "Type:", collider)
-		if collider2:
-			print("Ray 2 hit:", collider2.name, "Type:", collider2)
 			
 		if collider == GlobalScript.playerBody or collider2 == GlobalScript.playerBody:
-			print("player deteced boto enemy will come")
+			#print("player deteced boto enemy will come")
 			is_chasing = true
 	elif !GlobalScript.playerAlive:
 		is_chasing = false
@@ -115,11 +111,12 @@ func taking_damage(damage):
 		health -= damage
 		is_taking_damage = true
 		$sfx_damage_enemy.play()
+		print("damage received : ",damage)
 		print("current health : ",health)
 		if health <= 0:
 			health = 0
 			dead = true
-		damage_cooldown(1.5)
+		damage_cooldown(1)
 
 func damage_cooldown(wait_time):
 	allowed_to_take_damage = false

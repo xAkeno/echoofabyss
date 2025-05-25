@@ -112,7 +112,7 @@ func taking_damage(damage):
 		if health <= 0:
 			health = 0
 			dead = true
-		damage_cooldown(1.5)
+		damage_cooldown(1)
 
 func damage_cooldown(wait_time):
 	allowed_to_take_damage = false

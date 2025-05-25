@@ -69,7 +69,7 @@ func check_hitbox():
 func take_damage(damage):
 	if health < 0:
 		health = 0
-		print("dead")
+		print("dead", health)
 		get_tree().reload_current_scene()
 		is_alive = false
 	if damage != 0: 
@@ -95,6 +95,7 @@ func _physics_process(delta: float) -> void:
 	if Input.is_action_just_pressed("test"):
 		$ahsokadamagable.damage(5)
 		pass
+	
 	
 	if direction and state_machine.check_if_can_move():
 		velocity.x = direction.x * speed
@@ -141,6 +142,10 @@ func _on_player_hit_box_area_entered(area: Area2D) -> void:
 		await get_tree().create_timer(0.5).timeout
 		#$ahsokadamagable.damage(50)
 		#check_hitbox()
+		
+func trap_damage(amount: int):
+	$sfx_damage.play()
+	health -= amount
 
 func heal(amount: int):
 	health += amount

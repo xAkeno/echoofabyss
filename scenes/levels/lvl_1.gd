@@ -14,6 +14,7 @@ var attack_timer = 0.0
 const DOUBLE_ATTACK_MAX_TIME = 0.4
 @onready var save_sound: AudioStreamPlayer = $sfx_save
 #@export var frog_scene : PackedScene
+var key = false
 
 func _ready():
 	## For tile coordinates (e.g., tile 0, 0 or tile 2, 3)
