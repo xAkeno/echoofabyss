@@ -1,13 +1,13 @@
 extends CharacterBody2D
-class_name FrogEnemy
+class_name botoEnemy
 
-var max_health : int = 30
+var max_health : int = 60
 var min_health :int = 0
-var health : int =  30
+var health : int =  60
 
 var speed = 40
 @onready var animatedsprite = $AnimatedSprite2D
-var damage_to_deal : int = 10
+var damage_to_deal : int = 5
 var dir : Vector2
 var is_chasing : bool
 
@@ -17,7 +17,7 @@ var dead : bool
 var is_attacking : bool
 var is_taking_damage : bool
 var allowed_to_take_damage : bool 
-var knockback : int = -150
+var knockback : int = -200
 const gravity : int = 900
 
 var is_roaming : bool
@@ -26,7 +26,7 @@ var damage_done : int
 
 var points_for_kill : int = 250
 
-@export var frog_scene : PackedScene
+@export var boto_scene : PackedScene
 
 func _ready():
 	dead = false
@@ -69,9 +69,9 @@ func handle_animation():
 	if !dead and !is_attacking and !is_taking_damage:
 		animatedsprite.play("run")
 		if dir.x == 1:
-			animatedsprite.flip_h = false
-		elif dir.x == -1:
 			animatedsprite.flip_h = true
+		elif dir.x == -1:
+			animatedsprite.flip_h = false
 	elif is_taking_damage:
 		animatedsprite.play("hurt")
 		await get_tree().create_timer(0.4).timeout
@@ -96,13 +96,6 @@ func chose(array):
 	array.shuffle()
 	return array.front()
 
-
-func _on_frog_hit_box_area_entered(area):
-	#print("attack np")
-	if area == GlobalScript.playerDamageZone:
-		damage_taken = GlobalScript.playerDamage
-		if allowed_to_take_damage:
-			taking_damage(damage_taken)
 		
 func taking_damage(damage):
 	if !dead:
@@ -120,10 +113,16 @@ func damage_cooldown(wait_time):
 	allowed_to_take_damage = true
 	is_taking_damage = false
 
+func _on_boto_hit_box_area_entered(area):
+	#print("attack np")
+	if area == GlobalScript.playerDamageZone:
+		damage_taken = GlobalScript.playerDamage
+		if allowed_to_take_damage:
+			taking_damage(damage_taken)
 
-func _on_frog_damage_zone_body_entered(body):
+func _on_boto_damage_zone_body_entered(body):
 	if body == GlobalScript.playerBody:
 		print("touch2")
 		is_attacking = true
-		GlobalScript.frogDamage = damage_to_deal
+		GlobalScript.botoDamage = damage_to_deal
 		

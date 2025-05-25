@@ -15,6 +15,11 @@ var frogHitBox : Area2D
 var frogDamageZone :Area2D
 var frogDamage :int
 
+var botoHitBox : Area2D
+var botoDamageZone :Area2D
+var botoDamage :int
+
+
 var current_wave : int
 var moving_to_next_wave : bool
 

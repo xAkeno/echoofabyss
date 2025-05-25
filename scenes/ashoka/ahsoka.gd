@@ -19,6 +19,7 @@ func _ready():
 	GlobalScript.playerDamageZone = sword
 	GlobalScript.playerDamage = 20
 	GlobalScript.playerBody = self
+	GlobalScript.playerAlive = true
 	animation_tree.active = true
 	is_allowed_to_take_damage = true
 	is_alive = true
@@ -35,6 +36,15 @@ func check_hitbox():
 			damage = GlobalScript.batDamage
 		elif hitbox.get_parent() is FrogEnemy:
 			damage = GlobalScript.frogDamage
+		elif hitbox.get_parent() is botoEnemy:
+			await get_tree().create_timer(0.8).timeout
+			
+			# Re-check if the player is still overlapping with a botoEnemy
+			var recheck_hitbox = $playerHitBox.get_overlapping_areas()
+			for area in recheck_hitbox:
+				if area.get_parent() is botoEnemy:
+					damage = GlobalScript.botoDamage
+					break
 	
 	if is_allowed_to_take_damage:
 		take_damage(damage)

@@ -13,13 +13,20 @@ var attack_count = 0
 var attack_timer = 0.0
 const DOUBLE_ATTACK_MAX_TIME = 0.4
 @onready var save_sound: AudioStreamPlayer = $sfx_save
-@export var frog_scene : PackedScene
+#@export var frog_scene : PackedScene
 
 func _ready():
-	
-	var frog1 = frog_scene.instantiate()
-	add_child(frog1)
-	
+	## For tile coordinates (e.g., tile 0, 0 or tile 2, 3)
+	#var frog1 = frog_scene.instantiate()
+	#var tilemap = $TileMap
+	#var tile_coords = Vector2i(0, 0)  # tile position
+	#var world_pos = tilemap.map_to_world(tile_coords)
+#
+	#frog1.position = world_pos
+	#add_child(frog1)
+
+
+	#add_child(frog2)
 	var left = $ahsoka/CanvasLayer/left
 	var right = $ahsoka/CanvasLayer/right
 	var jump = $ahsoka/CanvasLayer/jump
@@ -50,7 +57,6 @@ func _ready():
 	##
 	var current_scene = get_tree().current_scene.scene_file_path
 	var saved_data = SaveSystem.load_game()
-	print(saved_data, "<===")
 	if saved_data != null:
 		if saved_data.has("position"):
 			var pos = saved_data["position"]
@@ -141,7 +147,6 @@ func _input(event):
 			
 
 func _on_dialog_area_area_entered(area: Area2D) -> void:
-	print("hhh")
 	var dialog_area_node = $DialogArea
 	print("DialogArea dialog_key is: '", dialog_area_node.dialog_key, "'")
 	
