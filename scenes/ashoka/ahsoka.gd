@@ -35,7 +35,14 @@ func check_hitbox():
 		if hitbox.get_parent() is Batenemy:
 			damage = GlobalScript.batDamage
 		elif hitbox.get_parent() is FrogEnemy:
-			damage = GlobalScript.frogDamage
+			await get_tree().create_timer(0.8).timeout
+			# Re-check if the player is still overlapping with a botoEnemy
+			var recheck_hitbox = $playerHitBox.get_overlapping_areas()
+			for area in recheck_hitbox:
+				if area.get_parent() is FrogEnemy:
+					print("damage by palaka")
+					damage = GlobalScript.frogDamage
+					break
 		elif hitbox.get_parent() is botoEnemy:
 			await get_tree().create_timer(0.8).timeout
 			# Re-check if the player is still overlapping with a botoEnemy
@@ -75,6 +82,7 @@ func take_damage(damage):
 	if damage != 0: 
 		if health > 0:
 			health -= damage
+			$sfx_damage.pitch_scale = randf_range(0.9, 1.1)
 			$sfx_damage.play()
 			$ahsokadamagable.damage(damage)
 			take_damage_cooldown(1.5)

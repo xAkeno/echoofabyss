@@ -278,16 +278,17 @@ radius = 7.0
 radius = 15.0333
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_lweuv"]
-radius = 19.0
+radius = 24.0208
 
 [node name="toxicFrog" type="CharacterBody2D"]
 script = ExtResource("1_ch0sj")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_q644r")
-animation = &"idle"
+animation = &"attack"
 autoplay = "idle"
-frame_progress = 0.374126
+frame = 4
+frame_progress = 0.840867
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(-1, 1)
@@ -305,7 +306,6 @@ shape = SubResource("CircleShape2D_avenh")
 [node name="frogDamageZone" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="frogDamageZone"]
-position = Vector2(-1, 1)
 shape = SubResource("CircleShape2D_lweuv")
 
 [node name="healthbar" parent="." instance=ExtResource("3_5uri2")]

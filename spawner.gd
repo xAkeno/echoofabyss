@@ -66,13 +66,15 @@ func _on_Timer_timeout() -> void:
 			phase = 2
 			print("All phases complete")
 			$Timer.wait_time = 30
+			$Timer.start()
 		2:
-			print("Phase 3: Spawning nigga")
+			print("Phase 3: Spawning all")
 			label.text = "Final phase: survive the onslaught!"
 			call_deferred("spawn_multiple", enemy_mina, 2)
-			call_deferred("spawn_multiple", enemy_gab, 4)
+			call_deferred("spawn_multiple", enemy_gab, 3)
 			call_deferred("spawn_multiple", enemy_boto, 3)
 			print("All phases complete")
+			$Timer.stop()
 		_:
 			label.text = ""
 			print("the gate is open")

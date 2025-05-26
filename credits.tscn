@@ -1,8 +1,9 @@
-[gd_scene load_steps=7 format=3 uid="uid://cxq25sv6f3t0j"]
+[gd_scene load_steps=8 format=3 uid="uid://bn8bc2l3is8jw"]
 
-[ext_resource type="Script" uid="uid://costq82j802bs" path="res://ending.gd" id="1_mhepx"]
-[ext_resource type="Texture2D" uid="uid://c5dd2vhlu8rdh" path="res://assets/Medieval_Castle_Asset_Pack/Background/layer_1.png" id="2_72g2w"]
-[ext_resource type="AudioStream" uid="uid://bq384hol2hw1s" path="res://assets/evil-cue-111895.mp3" id="3_y20dw"]
+[ext_resource type="Texture2D" uid="uid://c5dd2vhlu8rdh" path="res://assets/Medieval_Castle_Asset_Pack/Background/layer_1.png" id="1_g4wvt"]
+[ext_resource type="Script" uid="uid://cxbochdta5wu2" path="res://credits.gd" id="1_pjc1l"]
+[ext_resource type="Texture2D" uid="uid://bq5sjr87ng5hf" path="res://assets/ECHOES-OF-ABYSS-5-23-2025.png" id="2_pjc1l"]
+[ext_resource type="AudioStream" uid="uid://bq384hol2hw1s" path="res://assets/evil-cue-111895.mp3" id="3_j6beo"]
 
 [sub_resource type="Animation" id="Animation_mhepx"]
 resource_name = "RESET"
@@ -54,13 +55,13 @@ _data = {
 &"dissolve": SubResource("Animation_72g2w")
 }
 
-[node name="lvl_6" type="CanvasLayer"]
-script = ExtResource("1_mhepx")
+[node name="credits" type="CanvasLayer"]
+script = ExtResource("1_pjc1l")
 
 [node name="TextureRect" type="TextureRect" parent="."]
 offset_right = 1156.0
 offset_bottom = 648.0
-texture = ExtResource("2_72g2w")
+texture = ExtResource("1_g4wvt")
 
 [node name="ColorRect" type="ColorRect" parent="."]
 modulate = Color(1, 1, 1, 0)
@@ -68,25 +69,12 @@ offset_right = 1150.0
 offset_bottom = 649.0
 color = Color(0, 0, 0, 1)
 
-[node name="Label" type="Label" parent="."]
-offset_left = 87.0
-offset_top = 192.0
-offset_right = 4291.0
-offset_bottom = 643.0
-scale = Vector2(0.235, 0.235)
-theme_override_font_sizes/font_size = 80
-text = "After bravely pressing into the deepest Abyss, the young hero faced the final trial: a fierce battle against Dozen. With determination, the hero defeated Dozen and freed his mother from captivity. Returning home together, they lived happily ever after.
-"
-horizontal_alignment = 3
-vertical_alignment = 1
-autowrap_mode = 2
-
-[node name="return" type="Label" parent="."]
-offset_left = 452.0
-offset_top = 406.0
-offset_right = 705.0
-offset_bottom = 429.0
-text = "Tap anywhere to return to menu"
+[node name="Logo" type="TextureRect" parent="."]
+offset_left = 73.0
+offset_top = 7.0
+offset_right = 1097.0
+offset_bottom = 237.0
+texture = ExtResource("2_pjc1l")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
@@ -94,7 +82,39 @@ libraries = {
 }
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("3_y20dw")
+stream = ExtResource("3_j6beo")
 autoplay = true
+
+[node name="Label" type="Label" parent="."]
+offset_left = 151.0
+offset_top = 189.0
+offset_right = 3917.0
+offset_bottom = 1768.0
+scale = Vector2(0.235, 0.235)
+theme_override_font_sizes/font_size = 80
+text = "Credits
+
+David G
+Kauzz
+Mattz Art
+craftpix indie jam
+Anokolisa
+brullov
+mxxrnda
+Szadi art
+Flip
+DevWorm
+rvros
+Clembod"
+horizontal_alignment = 1
+autowrap_mode = 2
+justification_flags = 161
+
+[node name="return" type="Label" parent="."]
+offset_left = 479.0
+offset_top = 603.0
+offset_right = 732.0
+offset_bottom = 626.0
+text = "Tap anywhere to return to menu"
 
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]

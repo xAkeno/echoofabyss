@@ -1,4 +1,5 @@
 extends Area2D
+@onready var game_manager: Node = %gamemanager
 var key1 = false
 
 # Called when the node enters the scene tree for the first time.
@@ -16,5 +17,6 @@ func _on_body_entered(body: Node2D) -> void:
 		$AnimatedSprite2D.visible = false
 		print("key received")
 		$AudioStreamPlayer.play()
+		game_manager.update_key()
 		key1 = true
 	pass # Replace with function body.

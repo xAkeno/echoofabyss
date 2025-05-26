@@ -12,7 +12,8 @@ func _on_menu_pressed() -> void:
 
 
 func _on_idk_pressed() -> void:
-	SaveSystem.clear_save()
+	get_tree().change_scene_to_file("res://credits.tscn")
+	#SaveSystem.clear_save()
 	pass # Replace with function body.
 
 

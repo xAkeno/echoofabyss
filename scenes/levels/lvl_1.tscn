@@ -2804,9 +2804,6 @@ grow_vertical = 2
 texture = ExtResource("2_5sf1a")
 expand_mode = 3
 
-[node name="DialogPlayer" parent="." instance=ExtResource("14_j1457")]
-scene_text_file = "res://assets/dialog.json"
-
 [node name="TileMap" type="TileMap" parent="."]
 texture_filter = 1
 tile_set = SubResource("TileSet_ok8r0")
@@ -2816,42 +2813,6 @@ layer_0/tile_data = PackedInt32Array(2949119, 131073, 1, 2490368, 131073, 0, 249
 [node name="TileMapLayer" type="TileMapLayer" parent="TileMap"]
 tile_map_data = PackedByteArray("AADAABwAAAAHABUAAADAAB0AAAAHABYAAADBABwAAAAIABUAAADBAB0AAAAIABYAAADKABwAAAAHABUAAADKAB0AAAAHABYAAADLABwAAAAIABUAAADLAB0AAAAIABYAAADZABwAAAAHABUAAADZAB0AAAAHABYAAADaABwAAAAIABUAAADaAB0AAAAIABYAAADDABwAAAAHABMAAADEABwAAAAIABMAAADNABwAAAAHABMAAADOABwAAAAIABMAAACyACAAAAAIAAQAAACkAB8AAAAIAAQAAADHACAAAAAIAAQAAACqAB0AAAAPAAAAAACtAB0AAAAPAAEAAAC6AB0AAAAPAAYAAAC4ABwAAAANAAUAAAC4AB0AAAANAAYAAAC5ABwAAAAOAAUAAAC5AB0AAAAOAAYAAAC6ABwAAAAPAAUAAAC7ABwAAAAQAAUAAAC7AB0AAAAQAAYAAADUABwAAAANAAUAAADUAB0AAAANAAYAAADVABwAAAAOAAUAAADVAB0AAAAOAAYAAADWABwAAAAPAAUAAADWAB0AAAAPAAYAAADXABwAAAAQAAUAAADXAB0AAAAQAAYAAADQAB0AAAANAAAAAAB3ABoAAAAWAA0AAAB3ABsAAAAWAA4AAAB3ABwAAAAWAA8AAAB3AB0AAAAWABAAAAB4ABkAAAAXAAwAAAB4ABoAAAAXAA0AAAB4ABsAAAAXAA4AAAB4ABwAAAAXAA8AAAB4AB0AAAAXABAAAAB4AB4AAAAXABEAAAB5ABkAAAAYAAwAAAB5ABoAAAAYAA0AAAB5ABsAAAAYAA4AAAB5ABwAAAAYAA8AAAB5AB0AAAAYABAAAAB5AB4AAAAYABEAAAB5AB8AAAAYABIAAAB5ACAAAAAYABMAAAB6ABgAAAAZAAsAAAB6ABkAAAAZAAwAAAB6ABoAAAAZAA0AAAB6ABsAAAAZAA4AAAB6ABwAAAAZAA8AAAB6AB0AAAAZABAAAAB6AB4AAAAZABEAAAB6AB8AAAAZABIAAAB6ACAAAAAZABMAAAB7ABgAAAAaAAsAAAB7ABkAAAAaAAwAAAB7ABoAAAAaAA0AAAB7ABsAAAAaAA4AAAB7ABwAAAAaAA8AAAB7AB0AAAAaABAAAAB7AB4AAAAaABEAAAB7AB8AAAAaABIAAAB7ACAAAAAaABMAAAB8ABgAAAAbAAsAAAB8ABkAAAAbAAwAAAB8ABoAAAAbAA0AAAB8ABsAAAAbAA4AAAB8ABwAAAAbAA8AAAB8AB0AAAAbABAAAAB8AB4AAAAbABEAAAB8AB8AAAAbABIAAAB9ABgAAAAcAAsAAAB9ABkAAAAcAAwAAAB9ABoAAAAcAA0AAAB9ABsAAAAcAA4AAAB9ABwAAAAcAA8AAAB9AB0AAAAcABAAAAB9AB4AAAAcABEAAAB+ABgAAAAdAAsAAAB+ABkAAAAdAAwAAAB+ABoAAAAdAA0AAAB+ABsAAAAdAA4AAAB+ABwAAAAdAA8AAAB+AB0AAAAdABAAAAB+AB4AAAAdABEAAAB+AB8AAAAdABIAAAB/ABgAAAAeAAsAAAB/ABkAAAAeAAwAAAB/ABoAAAAeAA0AAAB/ABsAAAAeAA4AAAB/ABwAAAAeAA8AAAB/AB0AAAAeABAAAAB/AB4AAAAeABEAAAB/AB8AAAAeABIAAACAABkAAAAfAAwAAACAABoAAAAfAA0AAACAABsAAAAfAA4AAACAABwAAAAfAA8AAACAAB0AAAAfABAAAACAAB4AAAAfABEAAACHAB4AAAARAAkAAAA=")
 tile_set = SubResource("TileSet_myeqb")
-
-[node name="key" parent="." instance=ExtResource("10_1ppdi")]
-visible = false
-position = Vector2(4695, 501)
-
-[node name="potion" parent="." instance=ExtResource("9_e2cgk")]
-position = Vector2(4011, 552)
-
-[node name="toxicFrog" parent="." instance=ExtResource("20_myeqb")]
-position = Vector2(3075, 468)
-
-[node name="toxicFrog2" parent="." instance=ExtResource("20_myeqb")]
-position = Vector2(2950, 463)
-
-[node name="boto" parent="." instance=ExtResource("10_01joq")]
-position = Vector2(468, 577)
-
-[node name="finishLine" parent="." instance=ExtResource("7_0euni")]
-position = Vector2(4703, 501)
-
-[node name="coin" parent="." instance=ExtResource("8_4p0am")]
-position = Vector2(736, 518)
-
-[node name="coin2" parent="." instance=ExtResource("8_4p0am")]
-position = Vector2(1490, 447)
-
-[node name="coin3" parent="." instance=ExtResource("8_4p0am")]
-position = Vector2(2041, 512)
-
-[node name="coin4" parent="." instance=ExtResource("8_4p0am")]
-position = Vector2(2433, 498)
-
-[node name="coin5" parent="." instance=ExtResource("8_4p0am")]
-position = Vector2(3548, 468)
-
-[node name="game_manager" type="Node" parent="."]
 
 [node name="ahsoka" parent="." instance=ExtResource("6_144l7")]
 position = Vector2(212, 584)
@@ -2875,7 +2836,7 @@ metadata/_edit_use_anchors_ = true
 position = Vector2(25, -8)
 
 [node name="dmgZone" parent="ahsoka/playerDamageZone" index="0"]
-position = Vector2(2, -4)
+position = Vector2(16, -4)
 
 [node name="playerHitBox" parent="ahsoka" index="10"]
 position = Vector2(1, 1)
@@ -2935,12 +2896,21 @@ action = "attack_mobile"
 
 [node name="score" type="Label" parent="ahsoka/CanvasLayer"]
 unique_name_in_owner = true
-offset_left = 1076.0
-offset_top = 14.0
-offset_right = 1134.0
-offset_bottom = 37.0
-text = "Coin - 0"
-metadata/_edit_use_anchors_ = true
+offset_left = 1070.0
+offset_top = 5.0
+offset_right = 1140.0
+offset_bottom = 40.0
+theme_override_font_sizes/font_size = 25
+text = "🪙 - 0"
+
+[node name="key" type="Label" parent="ahsoka/CanvasLayer"]
+visible = false
+offset_left = 1055.0
+offset_top = 36.0
+offset_right = 1140.0
+offset_bottom = 71.0
+theme_override_font_sizes/font_size = 25
+text = "🗝0 / 1"
 
 [node name="DialogInteractionArea" type="Area2D" parent="ahsoka"]
 position = Vector2(27, -13)
@@ -2950,6 +2920,46 @@ collision_mask = 0
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ahsoka/DialogInteractionArea"]
 position = Vector2(-2, 0)
 shape = SubResource("RectangleShape2D_xgh8i")
+
+[node name="DialogPlayer" parent="ahsoka" instance=ExtResource("14_j1457")]
+scene_text_file = "res://assets/dialog.json"
+
+[node name="key" parent="." instance=ExtResource("10_1ppdi")]
+visible = false
+position = Vector2(4695, 501)
+
+[node name="potion" parent="." instance=ExtResource("9_e2cgk")]
+position = Vector2(4011, 552)
+
+[node name="toxicFrog" parent="." instance=ExtResource("20_myeqb")]
+position = Vector2(3075, 468)
+
+[node name="toxicFrog2" parent="." instance=ExtResource("20_myeqb")]
+position = Vector2(2950, 463)
+
+[node name="boto" parent="." instance=ExtResource("10_01joq")]
+visible = false
+position = Vector2(726, 886)
+
+[node name="finishLine" parent="." instance=ExtResource("7_0euni")]
+position = Vector2(4703, 501)
+
+[node name="coin" parent="." instance=ExtResource("8_4p0am")]
+position = Vector2(736, 518)
+
+[node name="coin2" parent="." instance=ExtResource("8_4p0am")]
+position = Vector2(1490, 447)
+
+[node name="coin3" parent="." instance=ExtResource("8_4p0am")]
+position = Vector2(2041, 512)
+
+[node name="coin4" parent="." instance=ExtResource("8_4p0am")]
+position = Vector2(2433, 498)
+
+[node name="coin5" parent="." instance=ExtResource("8_4p0am")]
+position = Vector2(3548, 468)
+
+[node name="game_manager" type="Node" parent="."]
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
 

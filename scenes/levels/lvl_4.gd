@@ -83,3 +83,9 @@ func _on_button_pressed() -> void:
 	$ahsoka/CanvasLayer/PauseMenu.visible = true
 	$ahsoka/CanvasLayer/PauseMenu.pause()
 	pass # Replace with function body.
+
+
+func _on_trap2_body_entered(body: Node2D) -> void:
+	if body.name == "ahsoka":
+		GlobalScript.playerBody.trap_damage(5)
+	pass # Replace with function body.

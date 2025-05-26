@@ -50,7 +50,8 @@ text = "PLAY"
 texture_filter = 1
 custom_minimum_size = Vector2(0, 75)
 layout_mode = 2
-text = "CLEAR SAVE"
+text = "CREDITS
+"
 
 [node name="exit" type="Button" parent="VBoxContainer"]
 texture_filter = 1
