@@ -20,8 +20,10 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_right = -4.0
-offset_bottom = -3.0
+offset_left = -7.0
+offset_top = -7.0
+offset_right = 8.0
+offset_bottom = 6.0
 grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("2_ug6k3")
@@ -70,6 +72,16 @@ texture = ExtResource("3_fje1k")
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("4_d7ru5")
 autoplay = true
+
+[node name="highscore" type="Label" parent="."]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 960.0
+offset_top = 609.0
+offset_right = 1141.0
+offset_bottom = 637.0
+theme_override_font_sizes/font_size = 20
+text = "Highest score : 0"
 
 [connection signal="pressed" from="VBoxContainer/menu" to="." method="_on_menu_pressed"]
 [connection signal="pressed" from="VBoxContainer/idk" to="." method="_on_idk_pressed"]

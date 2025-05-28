@@ -39,3 +39,31 @@ static func clear_save():
 			push_error("Failed to open user directory")
 	else:
 		print("No save file to clear.")
+
+#static func get_score():
+	#var saved_data = load_game()
+	#if saved_data == null:
+		#print("No saved game found.")
+		#return
+	#
+	#var current_coins = saved_data.get("coins", 0)
+	#var high_score = 0
+	#
+	## Load current high score
+	#if FileAccess.file_exists("user://highscore.save"):
+		#var file = FileAccess.open("user://highscore.save", FileAccess.READ)
+		#if file:
+			#var data = file.get_as_text().strip_edges()
+			#file.close()
+			#if data.is_valid_integer():
+				#high_score = int(data)
+#
+	## Compare and save if current score is higher
+	#if current_coins > high_score:
+		#print("New high score! Saving:", current_coins)
+		#var file = FileAccess.open("user://highscore.save", FileAccess.WRITE)
+		#if file:
+			#file.store_string(str(current_coins))
+			#file.close()
+	#else:
+		#print("High score remains:", high_score)
