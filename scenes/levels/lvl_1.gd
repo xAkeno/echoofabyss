@@ -5,6 +5,7 @@ var step = 0
 # Reference to the Label node
 @onready var label = $InstructionLabel
 @onready var label2 = $Label
+@onready var key_note:Label = $Label3;
 @export var bonfire_id: String
 @export var spawn_point: Node2D  # optional, a child node or position
 @export var dialog_key: String
@@ -142,6 +143,7 @@ func _input(event):
 		attack_count += 1
 		attack_timer = 0.0  # reset timer
 		if attack_count == 2:
+			$Area2D/Label2.text = "Nice! double attack deals more damage"
 			attack_count = 0
 			attack_timer = 0.0
 			
@@ -184,3 +186,8 @@ func _on_button_pressed() -> void:
 	print("menu")
 	$ahsoka/CanvasLayer/PauseMenu.visible = true
 	$ahsoka/CanvasLayer/PauseMenu.pause()
+
+
+func _on_key_area_body_entered(body: Node2D) -> void:
+	key_note.text = "Don’t die, or you’ll drop the key!"
+	pass # Replace with function body.

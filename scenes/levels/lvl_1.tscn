@@ -1,4 +1,4 @@
-[gd_scene load_steps=52 format=4 uid="uid://b5vvqfpjpoq2s"]
+[gd_scene load_steps=54 format=4 uid="uid://b5vvqfpjpoq2s"]
 
 [ext_resource type="Script" uid="uid://cfx305ooeva1g" path="res://scenes/levels/lvl_1.gd" id="1_gd3ko"]
 [ext_resource type="Texture2D" uid="uid://qcxvsw1r50q3" path="res://assets/Kauzz Forest Tiles/Backgrounds/Midleground.png" id="2_5sf1a"]
@@ -32,6 +32,7 @@
 [ext_resource type="Script" uid="uid://b8pouyqarrv8s" path="res://scenes/levels/attackTutorial.gd" id="17_144l7"]
 [ext_resource type="PackedScene" uid="uid://c2h1kgseqk6u5" path="res://scenes/toxic_frog.tscn" id="20_myeqb"]
 [ext_resource type="Script" uid="uid://cquvpip3cbshj" path="res://gamemanager.gd" id="29_myeqb"]
+[ext_resource type="Script" uid="uid://ik2sqxqmvvwd" path="res://scenes/levels/key_area.gd" id="33_t6ood"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_sw1tr"]
 texture = ExtResource("3_qtpdg")
@@ -2725,6 +2726,9 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0euni"]
 size = Vector2(231.5, 112)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qeqpa"]
+size = Vector2(179.308, 110.345)
+
 [node name="lvl1" type="Node"]
 script = ExtResource("1_gd3ko")
 
@@ -2781,10 +2785,10 @@ texture_filter = 1
 texture_repeat = 2
 anchors_preset = -1
 anchor_bottom = 0.963
-offset_left = 2893.0
-offset_top = -176.0
-offset_right = 4690.0
-offset_bottom = 455.976
+offset_left = 2898.0
+offset_top = -185.0
+offset_right = 4695.0
+offset_bottom = 446.976
 grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("2_5sf1a")
@@ -2958,7 +2962,7 @@ position = Vector2(2041, 512)
 position = Vector2(2433, 498)
 
 [node name="coin5" parent="." instance=ExtResource("8_4p0am")]
-position = Vector2(3548, 468)
+position = Vector2(3605, 515)
 
 [node name="game_manager" type="Node" parent="."]
 
@@ -3074,10 +3078,12 @@ position = Vector2(3807, 489)
 script = ExtResource("17_144l7")
 
 [node name="Label2" type="Label" parent="Area2D"]
-offset_left = -1108.0
-offset_top = -63.0
-offset_right = -793.0
-offset_bottom = -40.0
+offset_left = -1098.0
+offset_top = -65.0
+offset_right = -116.0
+offset_bottom = 4.0
+scale = Vector2(0.275, 0.275)
+theme_override_font_sizes/font_size = 50
 text = "Tap the attack icon on the right to attack"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
@@ -3087,6 +3093,34 @@ shape = SubResource("RectangleShape2D_0euni")
 [node name="gamemanager" type="Node" parent="."]
 unique_name_in_owner = true
 script = ExtResource("29_myeqb")
+
+[node name="keyArea" type="Area2D" parent="."]
+position = Vector2(3466, 433)
+scale = Vector2(0.145, 0.145)
+script = ExtResource("33_t6ood")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="keyArea"]
+position = Vector2(427.586, 200)
+scale = Vector2(1, 1)
+shape = SubResource("RectangleShape2D_qeqpa")
+
+[node name="Label3" type="Label" parent="."]
+offset_left = 3454.0
+offset_top = 433.0
+offset_right = 4517.0
+offset_bottom = 516.0
+scale = Vector2(0.145, 0.145)
+theme_override_font_sizes/font_size = 60
+text = "Grab the key to unlock the next level"
+
+[node name="Label4" type="Label" parent="."]
+offset_left = 3967.0
+offset_top = 507.0
+offset_right = 4580.0
+offset_bottom = 590.0
+scale = Vector2(0.145, 0.145)
+theme_override_font_sizes/font_size = 60
+text = "Walk into this to heal"
 
 [connection signal="pressed" from="ahsoka/CanvasLayer/Button" to="." method="_on_button_pressed"]
 [connection signal="body_entered" from="othersideMain" to="." method="_on_otherside_main_body_entered"]
@@ -3099,5 +3133,6 @@ script = ExtResource("29_myeqb")
 [connection signal="area_entered" from="beginning" to="." method="_on_beginning_area_entered"]
 [connection signal="area_exited" from="beginning" to="." method="_on_beginning_area_exited"]
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="body_entered" from="keyArea" to="." method="_on_key_area_body_entered"]
 
 [editable path="ahsoka"]
