@@ -17,7 +17,7 @@ func enemy_point(point_enemy:int):
 func update_key():
 	key.text = "🗝 - 1/1"
 	print("key geten")
-# Called when the node enters the scene tree for the first time.
+	
 func _ready() -> void:
 	var current = get_tree().current_scene.scene_file_path
 	var saved_data = SaveSystem.load_game()

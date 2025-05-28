@@ -10,10 +10,10 @@ config_version=5
 
 [application]
 
-config/name="EchoOfAbyss"
+config/name="EchoesOfAbyss"
 run/main_scene="uid://bngaxvyaqymu3"
 config/features=PackedStringArray("4.4", "Mobile")
-config/icon="res://icon.svg"
+config/icon="uid://chh1vxebp83iy"
 
 [autoload]
 

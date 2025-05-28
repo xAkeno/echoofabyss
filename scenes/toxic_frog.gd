@@ -7,7 +7,7 @@ var health : int =  30
 
 var speed = 40
 @onready var animatedsprite = $AnimatedSprite2D
-var damage_to_deal : int = 10
+var damage_to_deal : int = 20
 var dir : Vector2
 var is_chasing : bool
 

@@ -138,11 +138,10 @@ func _input(event):
 		print("ui_accept pressed and area active!")
 		SignalBus.emit_signal("display_dialog", dialog_key)
 	if event.is_action_pressed("attack_mobile"):
-		$Area2D/Label2.text = "Now try attacking faster"
+		$Area2D/Label2.text = "Now try slowly double press the attack"
 		attack_count += 1
 		attack_timer = 0.0  # reset timer
 		if attack_count == 2:
-			$Area2D/Label2.text = "Nice! Go save your mother"
 			attack_count = 0
 			attack_timer = 0.0
 			

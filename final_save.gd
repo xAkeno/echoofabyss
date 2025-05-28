@@ -22,7 +22,9 @@ func _process(delta: float) -> void:
 
 
 func _on_body_entered(body: Node2D) -> void:
-	if body.name == "ahsoka":
+	var key_node = get_node("../key")
+	print(key_node.key1)
+	if body.name == "ahsoka" and key_node.key1:
 		var saved_data = SaveSystem.load_game()
 		if saved_data == null or not saved_data.has("coins"):
 			print("No saved coins found in SaveSystem.")
